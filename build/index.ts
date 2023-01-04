@@ -1,8 +1,13 @@
 import express from "express";
+import errorHandlerMiddleware from "./middleware/error-handler";
+import notFoundMiddleware from "./middleware/not-found";
 
 const app = express();
 
-const PORT = 5000;
+
+//middleware
+notFoundMiddleware
+errorHandlerMiddleware
 
 app.get("/", (req: express.Request, res: express.Response) => {
   res.send(`
@@ -11,6 +16,12 @@ app.get("/", (req: express.Request, res: express.Response) => {
         </div>`);
 });
 
+app.use(notFoundMiddleware)
+app.use(errorHandlerMiddleware)
+
+const PORT = 5000;
+
 app.listen(PORT, () => {
   console.log("server running on 5000");
 });
+ 
