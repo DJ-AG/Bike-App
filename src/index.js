@@ -13,19 +13,30 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const app = (0, express_1.default)();
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
+//db and authenticateUser
+const connect_1 = __importDefault(require("./DB/connect"));
+// routers
+const authRouter_1 = __importDefault(require("./routes/authRouter"));
+const stationRouter_1 = __importDefault(require("./routes/stationRouter"));
+//middleware
 const error_handler_1 = __importDefault(require("./middleware/error-handler"));
 const not_found_1 = __importDefault(require("./middleware/not-found"));
-const dotenv_1 = __importDefault(require("dotenv"));
-const connect_1 = __importDefault(require("./DB/connect"));
-dotenv_1.default.config();
-const app = (0, express_1.default)();
 app.use(express_1.default.json());
-//middleware
 app.get("/", (req, res) => {
     res.send(`
     <div>
         <h1>Hi there!</h1>
         </div>`);
+});
+app.use('/api/v1/auth', authRouter_1.default);
+app.use('/api/v1/jobs', stationRouter_1.default);
+app.use((req, res, next) => {
+    console.log(req.url);
+    console.log(req.method);
+    next();
 });
 app.use(not_found_1.default);
 app.use(error_handler_1.default);

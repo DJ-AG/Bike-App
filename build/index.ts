@@ -1,17 +1,23 @@
 import express from "express";
-import errorHandlerMiddleware from "./middleware/error-handler";
-import notFoundMiddleware from "./middleware/not-found";
-import dotenv from 'dotenv'
-import connectDB from "./DB/connect";
-
-dotenv.config()
 
 const app = express();
 
-app.use(express.json())
+import dotenv from "dotenv";
+
+dotenv.config();
+
+//db and authenticateUser
+import connectDB from "./DB/connect";
+
+// routers
+import authRouter from "./routes/authRouter";
+import stationRouter from './routes/stationRouter'
 
 //middleware
+import errorHandlerMiddleware from "./middleware/error-handler";
+import notFoundMiddleware from "./middleware/not-found";
 
+app.use(express.json());
 
 app.get("/", (req: express.Request, res: express.Response) => {
   res.send(`
@@ -19,23 +25,30 @@ app.get("/", (req: express.Request, res: express.Response) => {
         <h1>Hi there!</h1>
         </div>`);
 });
+app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/jobs', stationRouter);
 
-app.use(notFoundMiddleware)
-app.use(errorHandlerMiddleware)
+app.use((req,res,next) => {
+  console.log(req.url)
+  console.log(req.method)
+  next()
+})
 
+
+app.use(notFoundMiddleware);
+app.use(errorHandlerMiddleware);
 
 app.listen(5000, () => {
   console.log("server running on 5000");
 });
- 
 
 const start = async () => {
   try {
-    await connectDB(process.env.MONGO_URL!)
+    await connectDB(process.env.MONGO_URL!);
     app.listen(process.env.PORT, () => {
-      console.log(`Server is listening on port ${process.env.PORT}...`)
-    })
+      console.log(`Server is listening on port ${process.env.PORT}...`);
+    });
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
