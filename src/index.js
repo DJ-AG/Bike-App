@@ -32,7 +32,7 @@ app.get("/", (req, res) => {
         </div>`);
 });
 app.use('/api/v1/auth', authRouter_1.default);
-app.use('/api/v1/jobs', stationRouter_1.default);
+app.use('/api/v1/station', stationRouter_1.default);
 app.use((req, res, next) => {
     console.log(req.url);
     console.log(req.method);

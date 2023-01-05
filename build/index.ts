@@ -26,7 +26,7 @@ app.get("/", (req: express.Request, res: express.Response) => {
         </div>`);
 });
 app.use('/api/v1/auth', authRouter);
-app.use('/api/v1/jobs', stationRouter);
+app.use('/api/v1/station', stationRouter);
 
 app.use((req,res,next) => {
   console.log(req.url)
