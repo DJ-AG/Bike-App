@@ -1,38 +1,31 @@
-import mongoose from "mongoose";
-import validator from 'validator'
+import mongoose from 'mongoose';
+import validator from 'validator';
 
-export interface User {
-  username: String;
-  email: string | boolean;
-  password: String;
-//   location:String;
+interface Users {
+  name:string,
+  email:string,
+  password:string
 }
-
-const UserSchema = new mongoose.Schema<User>({
-  username: {
-    type:String,
-    required: [true, "Please provide name"],
-    minlength: 3,
+ 
+const UserSchema = new mongoose.Schema<Users>({
+  name: {
+    type: String, 
+    required: [true, 'Please provide name'], 
+    minlength: 3, 
     maxlength: 20,
     trim: true,
   },
   email: {
-    type:String,
-    required: [true, "Please provide email"],
-    validate:validator.isEmail, message:'Please provide valid email',
+    type: String,
+    required: [true, 'Please provide email'],
     unique: true,
   },
   password: {
-    type:String,
-    required: [true, "Please provide password"],
-    minlength: 3,
+    type: String,
+    required: [true, 'Please provide password'],
+    minlength: 6,
+    select: false,
   },
-// implementation for future
-//   location: {
-//     maxlength: 20,
-//     trim: true,
-//   },
 });
-
-
-export default mongoose.model('User', UserSchema)
+ 
+export default mongoose.model("User", UserSchema);

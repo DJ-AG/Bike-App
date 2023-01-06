@@ -17,7 +17,7 @@ import stationRouter from './routes/stationRouter'
 import errorHandlerMiddleware from "./middleware/error-handler";
 import notFoundMiddleware from "./middleware/not-found";
 
-app.use(express.json());
+app.use(express.json())
 
 app.get("/", (req: express.Request, res: express.Response) => {
   res.send(`
@@ -38,9 +38,6 @@ app.use((req,res,next) => {
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
-app.listen(5000, () => {
-  console.log("server running on 5000");
-});
 
 const start = async () => {
   try {
@@ -52,3 +49,5 @@ const start = async () => {
     console.log(error);
   }
 };
+
+start()

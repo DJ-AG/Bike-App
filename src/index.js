@@ -40,9 +40,6 @@ app.use((req, res, next) => {
 });
 app.use(not_found_1.default);
 app.use(error_handler_1.default);
-app.listen(5000, () => {
-    console.log("server running on 5000");
-});
 const start = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield (0, connect_1.default)(process.env.MONGO_URL);
@@ -54,3 +51,4 @@ const start = () => __awaiter(void 0, void 0, void 0, function* () {
         console.log(error);
     }
 });
+start();
