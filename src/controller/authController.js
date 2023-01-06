@@ -13,23 +13,32 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateUser = exports.login = exports.register = void 0;
-const http_status_codes_1 = require("http-status-codes");
+const index_1 = require("../errors/index");
 const User_js_1 = __importDefault(require("../models/User.js"));
 const register = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const user = yield User_js_1.default.create(req.body);
-        res.status(http_status_codes_1.StatusCodes.OK).json({ user });
+    const { name, email, password } = req.body;
+    if (!name || !email || !password) {
+        throw new index_1.BadRequestError("please provide all values");
     }
-    catch (error) {
-        next(error);
+    const userAlreadyExists = yield User_js_1.default.findOne({ email });
+    if (userAlreadyExists) {
+        throw new index_1.BadRequestError("Email already in use");
     }
+    const user = yield User_js_1.default.create({ name, email, password });
 });
 exports.register = register;
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.send('login user');
+    const { email, password } = req.body;
+    if (!email || !password) {
+        throw new index_1.BadRequestError("Please provide all values");
+    }
+    const user = yield User_js_1.default.findOne({ email }).select("+password");
+    if (!user) {
+        throw new index_1.UnAuthenticatedError("Invalid Credentials");
+    }
 });
 exports.login = login;
 const updateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.send('updateUser');
+    res.send("updateUser");
 });
 exports.updateUser = updateUser;
