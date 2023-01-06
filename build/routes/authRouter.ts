@@ -1,5 +1,5 @@
-import express from 'express'
-const router = express.Router()
+import {Router} from 'express'
+const router = Router()
 import rateLimiter from 'express-rate-limit';
 import { login, register, updateUser } from '../controller/authController'
 const apiLimiter = rateLimiter({

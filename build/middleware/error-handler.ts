@@ -1,4 +1,4 @@
-import express from "express";
+import { Request, Response, NextFunction } from "express";
 import { StatusCodes } from "http-status-codes";
 
 interface Error {
@@ -12,9 +12,9 @@ interface Error {
 
 const errorHandlerMiddleware = (
   err: Error,
-  req: express.Request,
-  res: express.Response,
-  next: express.NextFunction
+  req: Request,
+  res: Response,
+  next: NextFunction
 ) => {
   const defaultError = {
     statusCode: err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR,

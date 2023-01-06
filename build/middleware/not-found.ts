@@ -1,5 +1,6 @@
-import express from 'express'
+import { Request, Response } from "express";
 
-const notFoundMiddleware = (req:express.Request,res:express.Response) => res.status(404).send('Route does not exist!')
+const notFoundMiddleware = (req: Request, res: Response) =>
+  res.status(404).send("Route does not exist!");
 
-export default notFoundMiddleware
+export default notFoundMiddleware;

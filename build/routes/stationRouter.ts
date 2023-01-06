@@ -1,5 +1,5 @@
-import express from "express";
-const router = express.Router();
+import { Router } from "express";
+const router = Router();
 
 import {
   createStation,
@@ -14,5 +14,4 @@ router.route("/show").get(showStations);
 router.route("/:id").delete(deleteStation).patch(updateStation);
 router.route("/getstations").get(getAllStations);
 
-
-export default router
+export default router;
