@@ -13,14 +13,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateUser = exports.login = exports.register = void 0;
+const http_status_codes_1 = require("http-status-codes");
 const User_js_1 = __importDefault(require("../models/User.js"));
-const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const register = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const user = yield User_js_1.default.create(req.body);
-        res.status(201).json({ user });
+        res.status(http_status_codes_1.StatusCodes.OK).json({ user });
     }
     catch (error) {
-        res.status(500).json({ msg: 'there was an error' });
+        next(error);
     }
 });
 exports.register = register;
