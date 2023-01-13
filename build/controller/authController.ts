@@ -1,5 +1,7 @@
 import { Request, Response, NextFunction } from "express";
+import { StatusCodes } from "http-status-codes";
 import { BadRequestError, UnAuthenticatedError } from "../errors/index";
+import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 
 interface Register {
@@ -12,6 +14,7 @@ interface Login {
   password: string;
 }
 
+
 const register = async (req: Request, res: Response, next: NextFunction) => {
   const { name, email, password }: Register = req.body;
 
@@ -23,6 +26,8 @@ const register = async (req: Request, res: Response, next: NextFunction) => {
     throw new BadRequestError("Email already in use");
   }
   const user = await User.create({ name, email, password });
+  const token = user.createJWT()
+  res.status(StatusCodes.OK).json({ user,token });
 };
 const login = async (req: Request, res: Response) => {
   const { email, password }: Login = req.body;
