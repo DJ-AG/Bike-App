@@ -26,14 +26,11 @@ const stationRouter_1 = __importDefault(require("./routes/stationRouter"));
 const error_handler_1 = __importDefault(require("./middleware/error-handler"));
 const not_found_1 = __importDefault(require("./middleware/not-found"));
 app.use(express_1.default.json());
-app.get("/", (req, res) => {
-    res.send(`
-    <div>
-        <h1>Hi there!</h1>
-        </div>`);
+app.get("/test", (req, res) => {
+    res.json({ msg: 'Welcome! WORKS !' });
 });
-app.use('/api/v1/auth', authRouter_1.default);
-app.use('/api/v1/station', stationRouter_1.default);
+app.use("/api/v1/auth", authRouter_1.default);
+app.use("/api/v1/station", stationRouter_1.default);
 app.use((req, res, next) => {
     console.log(req.url);
     console.log(req.method);
