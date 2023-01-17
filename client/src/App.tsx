@@ -1,18 +1,11 @@
 import React, { useEffect } from "react";
+import Landing from "./pages/Landing Page/Landing";
 
 const App = () => {
-  const fetchData = async () => {
-    try {
-      const response = await fetch("/test");
-      const data = await response.json()
-      console.log(data)
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  useEffect(() => {
-    fetchData();
-  }, []);
-  return <div>hello</div>;
+  return (
+    <div>
+      <Landing />
+    </div>
+  );
 };
 export default App;
