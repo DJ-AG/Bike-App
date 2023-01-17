@@ -1,10 +1,8 @@
 import Wrapper from "./Landing_wrapper";
-import Navbar from "../../components/Navbar/Navbar";
 
 const Landing = () => {
   return (
       <Wrapper>
-        <Navbar/>
         <div className="container page">
           {/* info */}
           <div className="info">

@@ -1,34 +1,39 @@
-import Wrapper from './Navbar_Wrapper'
+import Wrapper from "./Navbar_Wrapper";
+import { Link } from "react-router-dom";
 
 //import { FaAlignLeft } from 'react-icons/fa'
-import { useState } from 'react'
+import { useState } from "react";
 const Navbar = () => {
-  const [showLogout, setShowLogout] = useState(true)
+  const [showLogout, setShowLogout] = useState(true);
   return (
     <Wrapper>
-      <div className='nav-center'>
-        <button type='button' className='toggle-btn'>
-         LOGO#
+      <div className="nav-center">
+        <button type="button" className="toggle-btn">
+          LOGO#
         </button>
-        <div>
-          <h3 className='logo-text'>dashboard</h3>
-        </div>
-        <div className='btn-container'>
+        <ul>
+          <Link to="/">About</Link>
+          <Link to="/show">All Stations</Link>
+          <Link to="/create">Add Station</Link>
+          <Link to="/profile">profile</Link>
+        </ul>
+        <div className="btn-container">
           <button
-            type='button'
-            className='btn'
+            type="button"
+            className="btn"
             onClick={() => setShowLogout(!showLogout)}
-          >Register/Login
+          >
+            Register/Login
           </button>
-          <div className={showLogout ? 'dropdown show-dropdown' : 'dropdown'}>
-            <button type='button' className='dropdown-btn'>
+          <div className={showLogout ? "dropdown show-dropdown" : "dropdown"}>
+            <button type="button" className="dropdown-btn">
               Logout
             </button>
           </div>
         </div>
       </div>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
