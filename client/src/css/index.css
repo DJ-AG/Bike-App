@@ -157,7 +157,7 @@ ul {
   display: inline-block;
 }
 .btn:hover {
-  background: var(--primary-700);
+  background: var(--primary-600);
   box-shadow: var(--shadow-3);
 }
 .btn-hipster {
@@ -166,7 +166,7 @@ ul {
 }
 .btn-hipster:hover {
   color: var(--primary-200);
-  background: var(--primary-700);
+  background: var(--primary-600);
 }
 .btn-block {
   width: 100%;
