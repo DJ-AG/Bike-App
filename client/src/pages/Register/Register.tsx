@@ -1,34 +1,41 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import FormRow from "../../components/FormRow/FormRow";
 import Alert from "../../components/Alert/Alert";
 import Wrapper from "./Register_wrapper";
-import { useAppContext } from "../../Redux/Context/appContext";
+import { store } from "../../Redux/store";
+import { useAction } from "../../hooks/useActions";
+import { useTypedSelector } from "../../hooks/useTypeSelector";
 
 const initialState = {
   name: "",
   email: "",
   password: "",
   isMember: true,
+  showAlert: false,
 };
 
 const Register = () => {
   const [values, setValues] = useState(initialState);
-  const { isLoading, showAlert } = useAppContext()[1];
-
-  console.log(showAlert);
+  const { displayAlert,clearAlert } = useAction();
+  const { isLoading, showAlert } = useTypedSelector((state) => state.users);
   const toggleMember = () => {
     setValues({ ...values, isMember: !values.isMember });
   };
 
   const handleChange = (e: any) => {
-    console.log(e.target);
+    setValues({ ...values, [e.target.name]: e.target.value });
   };
 
-  const onSubmit = (e: any) => {
-    e.preventDefault();
-    console.log(e.target);
-  };
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
+    const { name, email, password, isMember } = values;
+    if (!email || !password || !(isMember && !name)) {
+      displayAlert();
+      clearAlert()
+      return;
+    }
+  };
   return (
     <Wrapper className="full-page">
       <form className="form" onSubmit={onSubmit}>

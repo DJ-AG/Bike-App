@@ -1,5 +1,9 @@
+import {store} from '../../Redux/store'
+
 const Alert = () => {
-  return <div className="alert alert-danger">alert goes here</div>;
+  const { alertType, alertText } = store.getState().users;
+  return <div className={`alert alert-${alertType}`}>{alertText}</div>;
+  
 };
 
 export default Alert;
