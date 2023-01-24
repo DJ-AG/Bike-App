@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import FormRow from "../../components/FormRow/FormRow";
 import Alert from "../../components/Alert/Alert";
 import Wrapper from "./Register_wrapper";
-import { store } from "../../Redux/store";
 import { useAction } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypeSelector";
 
@@ -11,13 +11,16 @@ const initialState = {
   email: "",
   password: "",
   isMember: true,
-  showAlert: false,
 };
 
 const Register = () => {
   const [values, setValues] = useState(initialState);
-  const { displayAlert,clearAlert } = useAction();
-  const { isLoading, showAlert } = useTypedSelector((state) => state.users);
+  const { displayAlert,setupUser } = useAction();
+  const navigate = useNavigate();
+  const { user, isLoading, showAlert } = useTypedSelector(
+    (state) => state.users
+  );
+ 
   const toggleMember = () => {
     setValues({ ...values, isMember: !values.isMember });
   };
@@ -30,12 +33,24 @@ const Register = () => {
     event.preventDefault();
 
     const { name, email, password, isMember } = values;
-    if (!email || !password || !(isMember && !name)) {
+    if (!email || !password || (!isMember && !name)) {
       displayAlert();
-      clearAlert()
       return;
     }
+    const currentUser = { name, email, password };
+    if (isMember) {
+      setupUser({currentUser,endPoint:'login',alertText:'Login Successful! Redirecting...'})
+    } else {
+      setupUser({currentUser,endPoint:'register',alertText:'Register Successfull! Redirecting...'});
+    }
   };
+  useEffect(() => {
+    if (user) {
+      setTimeout(() => {
+        navigate("/");
+      }, 3000);
+    }
+  }, [user, navigate]);
   return (
     <Wrapper className="full-page">
       <form className="form" onSubmit={onSubmit}>
@@ -64,7 +79,7 @@ const Register = () => {
           handleChange={handleChange}
           labelText="password"
         />
-        <button type="submit" className="btn btn-block">
+        <button type="submit" className="btn btn-block" disabled={isLoading}>
           submit
         </button>
         <p>

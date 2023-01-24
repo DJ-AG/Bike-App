@@ -7,6 +7,8 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+import morgan from 'morgan'
+
 //db and authenticateUser
 import connectDB from "./DB/connect";
 
@@ -17,6 +19,10 @@ import stationRouter from "./routes/stationRouter";
 //middleware
 import errorHandlerMiddleware from "./middleware/error-handler";
 import notFoundMiddleware from "./middleware/not-found";
+
+if(process.env.NODE_ENV !== 'production'){
+  app.use(morgan('dev'))
+}
 app.use(express.json());
 app.get("/test", (req: Request, res: Response) => {
   res.json({msg:'Welcome! WORKS !'});

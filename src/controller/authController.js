@@ -13,8 +13,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateUser = exports.login = exports.register = void 0;
+require("express-async-errors");
 const http_status_codes_1 = require("http-status-codes");
 const index_1 = require("../errors/index");
+const attachCookie_1 = __importDefault(require("../utils/attachCookie"));
 const User_js_1 = __importDefault(require("../models/User.js"));
 const register = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const { name, email, password } = req.body;
@@ -39,6 +41,14 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (!user) {
         throw new index_1.UnAuthenticatedError("Invalid Credentials");
     }
+    const isPasswordCorrect = yield user.comparePassword(password);
+    if (!isPasswordCorrect) {
+        throw new index_1.UnAuthenticatedError("Invalid Credentials");
+    }
+    const token = user.createJWT();
+    (0, attachCookie_1.default)(res, token);
+    user.password = undefined;
+    res.status(http_status_codes_1.StatusCodes.OK).json({ user });
 });
 exports.login = login;
 const updateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {

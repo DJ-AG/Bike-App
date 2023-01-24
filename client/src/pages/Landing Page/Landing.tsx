@@ -1,5 +1,5 @@
+import { useTypedSelector } from "../../hooks/useTypeSelector";
 import Wrapper from "./Landing_wrapper";
-
 const Landing = () => {
   return (
       <Wrapper>

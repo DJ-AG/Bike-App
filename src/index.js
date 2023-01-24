@@ -17,6 +17,7 @@ const express_1 = __importDefault(require("express"));
 const app = (0, express_1.default)();
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
+const morgan_1 = __importDefault(require("morgan"));
 //db and authenticateUser
 const connect_1 = __importDefault(require("./DB/connect"));
 // routers
@@ -25,6 +26,9 @@ const stationRouter_1 = __importDefault(require("./routes/stationRouter"));
 //middleware
 const error_handler_1 = __importDefault(require("./middleware/error-handler"));
 const not_found_1 = __importDefault(require("./middleware/not-found"));
+if (process.env.NODE_ENV !== 'production') {
+    app.use((0, morgan_1.default)('dev'));
+}
 app.use(express_1.default.json());
 app.get("/test", (req, res) => {
     res.json({ msg: 'Welcome! WORKS !' });

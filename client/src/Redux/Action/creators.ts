@@ -4,7 +4,7 @@ import ActionType from "./types";
 
 import { Action } from "./Interface";
 
-export const clearAlert = () => {
+const clearAlert = () => {
   return async (dispatch: Dispatch<Action>) => {
     setTimeout(() => {
       dispatch({ type: ActionType.CLEAR_ALERT });
@@ -13,10 +13,23 @@ export const clearAlert = () => {
 };
 
 export const displayAlert = () => {
-  return async (dispatch: any) => {
+  return async (dispatch: Dispatch<Action>) => {
     dispatch({ type: ActionType.DISPLAY_ALERT });
+    clearAlert();
   };
 };
+
+
+const addUserToLocalStorage = (user: string, token: string) => {
+  localStorage.setItem("user", JSON.stringify(user));
+  localStorage.setItem("token", token);
+};
+
+const removeUserFromLocalStoorage = () => {
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
+};
+
 
 export const setupUser = ({
   currentUser,

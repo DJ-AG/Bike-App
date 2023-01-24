@@ -1,10 +1,13 @@
+const token = localStorage.getItem('token')
+const user = localStorage.getItem('user')
+
 const state = {
     userLoading: true,
     isLoading: false,
     showAlert: false,
     alertText: "",
     alertType: "",
-    user: null,
+    user: user ? JSON.stringify(user) : null,
     status: "pending",
     isEditing: false,
     editStationId: "",
@@ -19,6 +22,8 @@ const state = {
     searchType: "all",
     sort: "latest",
     sortOptions: ["latest", "oldest", "a-z", "z-a"],
+    token:token
+
   };
 
   export default state

@@ -1,6 +1,8 @@
+import "express-async-errors";
 import { Request, Response, NextFunction } from "express";
 import { StatusCodes } from "http-status-codes";
 import { BadRequestError, UnAuthenticatedError } from "../errors/index";
+import attachCookie from "../utils/attachCookie";
 import User from "../models/User.js";
 
 interface Register {
@@ -8,11 +10,10 @@ interface Register {
   email: string;
   password: string;
 }
-interface Login {
-  email: string;
+interface Compare {
+  comparePassword: any;
   password: string;
 }
-
 
 const register = async (req: Request, res: Response, next: NextFunction) => {
   const { name, email, password }: Register = req.body;
@@ -25,11 +26,12 @@ const register = async (req: Request, res: Response, next: NextFunction) => {
     throw new BadRequestError("Email already in use");
   }
   const user = await User.create({ name, email, password });
-  const token = user.createJWT()
-  res.status(StatusCodes.OK).json({ user,token });
+  const token = user.createJWT();
+  res.status(StatusCodes.OK).json({ user, token });
 };
+
 const login = async (req: Request, res: Response) => {
-  const { email, password }: Login = req.body;
+  const { email, password }: { email: string; password: string } = req.body;
   if (!email || !password) {
     throw new BadRequestError("Please provide all values");
   }
@@ -37,7 +39,18 @@ const login = async (req: Request, res: Response) => {
   if (!user) {
     throw new UnAuthenticatedError("Invalid Credentials");
   }
+
+  const isPasswordCorrect = await user.comparePassword(password);
+  if (!isPasswordCorrect) {
+    throw new UnAuthenticatedError("Invalid Credentials");
+  }
+  const token = user.createJWT();
+   attachCookie( res, token );
+  user.password = undefined;
+
+  res.status(StatusCodes.OK).json({ user });
 };
+
 const updateUser = async (req: Request, res: Response) => {
   res.send("updateUser");
 };
