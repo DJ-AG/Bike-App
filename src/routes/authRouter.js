@@ -14,5 +14,5 @@ const apiLimiter = (0, express_rate_limit_1.default)({
 });
 router.route('/register').post(apiLimiter, authController_1.register);
 router.route('/login').post(apiLimiter, authController_1.login);
-router.route('/updateUser').patch(authController_1.updateUser);
+router.get('/logout', authController_1.logout);
 exports.default = router;

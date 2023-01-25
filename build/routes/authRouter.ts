@@ -1,7 +1,7 @@
 import {Router} from 'express'
 const router = Router()
 import rateLimiter from 'express-rate-limit';
-import { login, register, updateUser } from '../controller/authController'
+import { logout,login, register, updateUser } from '../controller/authController'
 const apiLimiter = rateLimiter({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 10,
@@ -10,7 +10,7 @@ const apiLimiter = rateLimiter({
 
 router.route('/register').post(apiLimiter, register);
 router.route('/login').post(apiLimiter, login);
-router.route('/updateUser').patch(updateUser);
+router.get('/logout', logout);
 
 
 export default router

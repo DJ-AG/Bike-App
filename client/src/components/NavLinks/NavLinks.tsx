@@ -3,12 +3,12 @@ import { NavLink } from "react-router-dom";
 import Wrapper from "./NavLinks_styles";
 
 const NavLinks = ({toggleSidebar}:any) => {
+
   return (
     <Wrapper>
       <div className="nav-links">
         {links.map((link) => {
-          const { text, path, id, icon } = link;
-
+          const { text, path, id, icon,} = link;
           return (
             <NavLink
               to={path}

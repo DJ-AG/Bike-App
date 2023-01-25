@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 const Wrapper = styled.aside`
   @media (min-width: 992px) {
-    display: block;
     .sidebar-container {
       background: var(--white);
       min-height: 100vh;

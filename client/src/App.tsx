@@ -16,7 +16,7 @@ const App = () => {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path="/auth" element={<ProtectedRoute />}>
+          <Route path="/" element={<ProtectedRoute />}>
             <Route path="add-station" element={<AddStation />} />
             <Route path="profile" element={<Profile />} />
           </Route>

@@ -1,4 +1,5 @@
 import Wrapper from "./Navbar_Wrapper";
+import { Link } from "react-router-dom";
 import { FaAlignLeft, FaUserCircle, FaCaretDown } from "react-icons/fa";
 import { useState } from "react";
 import { useTypedSelector } from "../../hooks/useTypeSelector";
@@ -8,6 +9,7 @@ import Hamburger from "../Hamburger/hamburger";
 
 const Navbar = () => {
   const [showLogout, setShowLogout] = useState(false);
+  console.log(showLogout)
   const { logoutUser, toggleSidebar } = useAction();
   const { user } = useTypedSelector((state) => state.users);
   return (
@@ -19,25 +21,39 @@ const Navbar = () => {
           </button>
         </div>
         <div className="hidden-nav">
-        <NavLinks />
+          <NavLinks />
         </div>
-        <div className="btn-container">
-          <button
-            type="button"
-            className="btn"
-            onClick={() => setShowLogout(!showLogout)}
-          >
-            <FaUserCircle />
-            {user?.name}
-            <FaCaretDown />
-          </button>
-          <Hamburger />
-          <div className={showLogout ? "dropdown show-dropdown" : "dropdown"}>
-            <button type="button" className="dropdown-btn" onClick={logoutUser}>
-              logout
+        {user ? (
+          <div className="btn-container">
+            <button
+              type="button"
+              className="btn"
+              onClick={() => setShowLogout(!showLogout)}
+            >
+              <FaUserCircle />
+              {user?.name}
+              <FaCaretDown />
             </button>
+            <Hamburger />
+            <div className={showLogout ? "dropdown show-dropdown" : "dropdown"}>
+              <button
+                type="button"
+                className="dropdown-btn"
+                onClick={logoutUser}
+              >
+                logout
+              </button>
+            </div>
           </div>
-        </div>
+        ) : (
+          <Link
+            to="/register"
+            className="btn btn-hero"
+            onClick={() => setShowLogout(false)}
+          >
+            Login/Register
+          </Link>
+        )}
       </div>
     </Wrapper>
   );

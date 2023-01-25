@@ -45,7 +45,7 @@ const login = async (req: Request, res: Response) => {
     throw new UnAuthenticatedError("Invalid Credentials");
   }
   const token = user.createJWT();
-   attachCookie( res, token );
+  attachCookie(res, token);
   user.password = undefined;
 
   res.status(StatusCodes.OK).json({ user });
@@ -54,5 +54,11 @@ const login = async (req: Request, res: Response) => {
 const updateUser = async (req: Request, res: Response) => {
   res.send("updateUser");
 };
-
-export { register, login, updateUser };
+const logout = async (req:Request, res:Response) => {
+  res.cookie("token", "logout", {
+    httpOnly: true,
+    expires: new Date(Date.now() + 1000),
+  });
+  res.status(StatusCodes.OK).json({ msg: "user logged out!" });
+};
+export { register, login, updateUser, logout };

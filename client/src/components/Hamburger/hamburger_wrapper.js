@@ -1,6 +1,9 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 const Wrapper = styled.aside`
+  @media (min-width: 992px) {
+    display: none;
+  }
   .sidebar-container {
     position: fixed;
     inset: 0;
@@ -57,7 +60,7 @@ const Wrapper = styled.aside`
     color: var(--primary-500);
   }
   .icon {
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     margin-right: 1rem;
     display: grid;
     place-items: center;
@@ -69,5 +72,5 @@ const Wrapper = styled.aside`
   .active .icon {
     color: var(--primary-500);
   }
-`;
-export default Wrapper;
+`
+export default Wrapper

@@ -37,6 +37,7 @@ export const logoutUser = () => {
   return async (dispatch: Dispatch<Action>) => {
     await authFetch.get("/auth/logout");
     dispatch({ type: ActionType.LOGOUT_USER });
+    removeUserFromLocalStoorage()
   };
 };
 

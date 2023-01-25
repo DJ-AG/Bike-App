@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateUser = exports.login = exports.register = void 0;
+exports.logout = exports.updateUser = exports.login = exports.register = void 0;
 require("express-async-errors");
 const http_status_codes_1 = require("http-status-codes");
 const index_1 = require("../errors/index");
@@ -55,3 +55,11 @@ const updateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     res.send("updateUser");
 });
 exports.updateUser = updateUser;
+const logout = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    res.cookie("token", "logout", {
+        httpOnly: true,
+        expires: new Date(Date.now() + 1000),
+    });
+    res.status(http_status_codes_1.StatusCodes.OK).json({ msg: "user logged out!" });
+});
+exports.logout = logout;
