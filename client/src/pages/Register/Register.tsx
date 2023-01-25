@@ -15,12 +15,12 @@ const initialState = {
 
 const Register = () => {
   const [values, setValues] = useState(initialState);
-  const { displayAlert,setupUser } = useAction();
+  const { displayAlert, loginUser, registerUser } = useAction();
   const navigate = useNavigate();
   const { user, isLoading, showAlert } = useTypedSelector(
     (state) => state.users
   );
- 
+
   const toggleMember = () => {
     setValues({ ...values, isMember: !values.isMember });
   };
@@ -39,9 +39,9 @@ const Register = () => {
     }
     const currentUser = { name, email, password };
     if (isMember) {
-      setupUser({currentUser,endPoint:'login',alertText:'Login Successful! Redirecting...'})
+      loginUser(currentUser);
     } else {
-      setupUser({currentUser,endPoint:'register',alertText:'Register Successfull! Redirecting...'});
+      registerUser(currentUser);
     }
   };
   useEffect(() => {

@@ -4,6 +4,10 @@ import ActionType from "./types";
 
 import { Action } from "./Interface";
 
+const authFetch = axios.create({
+  baseURL: "/api/v1",
+});
+
 const clearAlert = () => {
   return async (dispatch: Dispatch<Action>) => {
     setTimeout(() => {
@@ -19,7 +23,6 @@ export const displayAlert = () => {
   };
 };
 
-
 const addUserToLocalStorage = (user: string, token: string) => {
   localStorage.setItem("user", JSON.stringify(user));
   localStorage.setItem("token", token);
@@ -30,32 +33,58 @@ const removeUserFromLocalStoorage = () => {
   localStorage.removeItem("user");
 };
 
-
-export const setupUser = ({
-  currentUser,
-  endPoint,
-  alertText,
-}: {
-  currentUser: any;
-  endPoint: any;
-  alertText: string;
-}) => {
+export const logoutUser = () => {
   return async (dispatch: Dispatch<Action>) => {
-    dispatch({ type: ActionType.SETUP_USER_BEGIN });
+    await authFetch.get("/auth/logout");
+    dispatch({ type: ActionType.LOGOUT_USER });
+  };
+};
 
+export const loginUser = (currentUser: any) => {
+  return async (dispatch: Dispatch<Action>) => {
+    dispatch({ type: ActionType.LOGIN_USER_BEGIN });
     try {
-      const { data } = await axios.get(`/api/v1/auth/${endPoint}`, currentUser);
-      const user = data.user;
+      const { data } = await axios.post("/api/v1/auth/login", currentUser);
+      const { user, token } = data;
       dispatch({
-        type: ActionType.SETUP_USER_SUCCESS,
-        payload: { user, alertText },
+        type: ActionType.LOGIN_USER_SUCCESS,
+        payload: { user, token },
       });
-    } catch (error: any) {
+      addUserToLocalStorage(user, token);
+    } catch (err: any) {
       dispatch({
-        type: ActionType.SETUP_USER_ERROR,
-        payload: { msg: error.response.data.msg },
+        type: ActionType.LOGIN_USER_ERROR,
+        payload: { msg: err.response.data.msg },
       });
     }
     clearAlert();
   };
 };
+
+export const registerUser = (currentUser: any) => {
+  return async (dispatch: Dispatch<Action>) => {
+    dispatch({ type: ActionType.SETUP_USER_BEGIN });
+    try {
+      const { data } = await axios.post("/api/v1/auth/register", currentUser);
+      const { user, token } = data;
+      dispatch({
+        type: ActionType.SETUP_USER_SUCCESS,
+        payload: { user, token },
+      });
+      addUserToLocalStorage(user, token);
+    } catch (err: any) {
+      dispatch({
+        type: ActionType.SETUP_USER_ERROR,
+        payload: { msg: err.response.data.msg },
+      });
+    }
+    clearAlert();
+  };
+};
+
+
+export const toggleSidebar = () => {
+  return async(dispatch:Dispatch<Action>) => {
+    dispatch({type:ActionType.TOGGLE_SIDEBAR})
+  }
+}

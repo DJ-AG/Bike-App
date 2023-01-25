@@ -21,6 +21,7 @@ interface RepositoriesState {
   stations: any;
   searchStatus: string;
   searchType: string;
+  showSidebar:boolean;
   sort: string;
   sortOptions: any;
   token: string | null;
@@ -48,29 +49,6 @@ const reducer = (
         alertType: "",
         alertText: "",
       };
-    case ActionType.SETUP_USER_BEGIN:
-      return {
-        ...state,
-        isLoading: true,
-      };
-    case ActionType.SETUP_USER_SUCCESS:
-      return {
-        ...state,
-        user: action.payload.user,
-        token: action.payload.token,
-        isLoading: false,
-        showAlert: true,
-        alertType: "success",
-        alertText: action.payload.alertText,
-      };
-    case ActionType.SETUP_USER_ERROR:
-      return {
-        ...state,
-        isLoading: false,
-        showAlert: true,
-        alertType: "danger",
-        alertText: action.payload.msg,
-      };
       case ActionType.LOGIN_USER_BEGIN:
         return {
           ...state,
@@ -94,6 +72,40 @@ const reducer = (
           alertType: "danger",
           alertText: action.payload.msg,
         };
+
+        case ActionType.LOGOUT_USER:
+          return{
+            ...initialState,
+            userLoading: false,
+          }
+          case ActionType.SETUP_USER_BEGIN:
+            return {
+              ...state,
+              isLoading: true,
+            };
+          case ActionType.SETUP_USER_SUCCESS:
+            return {
+              ...state,
+              user: action.payload.user,
+              token: action.payload.token,
+              isLoading: false,
+              showAlert: true,
+              alertType: "success",
+              alertText: "Register Successful! Redirecting...",
+            };
+          case ActionType.SETUP_USER_ERROR:
+            return {
+              ...state,
+              isLoading: false,
+              showAlert: true,
+              alertType: "danger",
+              alertText: action.payload.msg,
+            };
+            case ActionType.TOGGLE_SIDEBAR:
+              return {
+                ...state,
+                showSidebar: !state.showSidebar,
+              }
         
     default:
       return state;

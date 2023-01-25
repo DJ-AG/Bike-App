@@ -22,8 +22,8 @@ const state = {
     searchType: "all",
     sort: "latest",
     sortOptions: ["latest", "oldest", "a-z", "z-a"],
-    token:token
-
+    token:token,
+    showSidebar:false
   };
 
   export default state

@@ -33,6 +33,13 @@ export interface loginUserError {
   action?: string;
 }
 
+export interface logout {
+  type: "LOGOUT_USER";
+}
+export interface toggleSidebar {
+  type: "TOGGLE_SIDEBAR";
+}
+
 export type Action =
   | DisplayAlert
   | ClearAlert
@@ -41,4 +48,6 @@ export type Action =
   | SetupUserError
   | loginUserBegin
   | loginUserSuccess
-  | loginUserError;
+  | loginUserError
+  | logout
+  | toggleSidebar;
