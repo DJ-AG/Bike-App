@@ -9,7 +9,6 @@ import Hamburger from "../Hamburger/hamburger";
 
 const Navbar = () => {
   const [showLogout, setShowLogout] = useState(false);
-  console.log(showLogout)
   const { logoutUser, toggleSidebar } = useAction();
   const { user } = useTypedSelector((state) => state.users);
   return (
@@ -20,6 +19,7 @@ const Navbar = () => {
             <FaAlignLeft />
           </button>
         </div>
+        <Hamburger />
         <div className="hidden-nav">
           <NavLinks />
         </div>
@@ -34,7 +34,6 @@ const Navbar = () => {
               {user?.name}
               <FaCaretDown />
             </button>
-            <Hamburger />
             <div className={showLogout ? "dropdown show-dropdown" : "dropdown"}>
               <button
                 type="button"

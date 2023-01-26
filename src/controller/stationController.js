@@ -74,10 +74,10 @@ const getAllStations = (req, res) => __awaiter(void 0, void 0, void 0, function*
     const limit = Number(req.query.limit) || 10;
     const skip = (page - 1) * limit;
     result = result.skip(skip).limit(limit);
-    const jobs = yield result;
-    const totalJobs = yield Station_1.default.countDocuments(queryObject);
-    const numOfPages = Math.ceil(totalJobs / limit);
-    res.status(http_status_codes_1.StatusCodes.OK).json({ jobs, totalJobs, numOfPages });
+    const stations = yield result;
+    const totalStations = yield Station_1.default.countDocuments(queryObject);
+    const numOfPages = Math.ceil(totalStations / limit);
+    res.status(http_status_codes_1.StatusCodes.OK).json({ stations, totalStations, numOfPages });
 });
 exports.getAllStations = getAllStations;
 const deleteStation = (req, res) => __awaiter(void 0, void 0, void 0, function* () {

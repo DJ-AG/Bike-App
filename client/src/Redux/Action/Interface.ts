@@ -39,6 +39,13 @@ export interface logout {
 export interface toggleSidebar {
   type: "TOGGLE_SIDEBAR";
 }
+export interface getStationsBegin {
+  type: "GET_STATION_BEGIN";
+}
+export interface getStationsSuccess {
+  type: "GET_STATION_SUCCESS";
+  payload: any;
+}
 
 export type Action =
   | DisplayAlert
@@ -50,4 +57,6 @@ export type Action =
   | loginUserSuccess
   | loginUserError
   | logout
-  | toggleSidebar;
+  | toggleSidebar
+  | getStationsBegin
+  | getStationsSuccess;

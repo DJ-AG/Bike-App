@@ -33,7 +33,6 @@ const reducer = (
 ): RepositoriesState => {
   switch (action.type) {
     case ActionType.DISPLAY_ALERT:
-      console.log("DISPLAY ALERT CASE");
       return {
         ...state,
         showAlert: true,
@@ -41,8 +40,6 @@ const reducer = (
         alertText: "Please provide all values!",
       };
     case ActionType.CLEAR_ALERT:
-      console.log("CLEAR ALERT CASE");
-
       return {
         ...state,
         showAlert: false,
@@ -106,6 +103,22 @@ const reducer = (
       return {
         ...state,
         showSidebar: !state.showSidebar,
+      };
+
+    case ActionType.GET_STATION_BEGIN:
+      return {
+        ...state,
+        isLoading: true,
+        showAlert: false,
+      };
+
+    case ActionType.GET_STATION_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        stations: action.payload.stations,
+        totalStations: action.payload.totalStations,
+        numOfPages: action.payload.numOfPages,
       };
     default:
       return state;

@@ -106,12 +106,12 @@ const getAllStations = async (req: any, res: Response) => {
 
   result = result.skip(skip).limit(limit);
 
-  const jobs = await result;
+  const stations = await result;
 
-  const totalJobs = await Station.countDocuments(queryObject);
-  const numOfPages = Math.ceil(totalJobs / limit);
+  const totalStations = await Station.countDocuments(queryObject);
+  const numOfPages = Math.ceil(totalStations / limit);
 
-  res.status(StatusCodes.OK).json({ jobs, totalJobs, numOfPages });
+  res.status(StatusCodes.OK).json({ stations, totalStations, numOfPages });
 };
 
 

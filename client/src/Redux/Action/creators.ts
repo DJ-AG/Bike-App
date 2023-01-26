@@ -37,7 +37,7 @@ export const logoutUser = () => {
   return async (dispatch: Dispatch<Action>) => {
     await authFetch.get("/auth/logout");
     dispatch({ type: ActionType.LOGOUT_USER });
-    removeUserFromLocalStoorage()
+    removeUserFromLocalStoorage();
   };
 };
 
@@ -83,9 +83,32 @@ export const registerUser = (currentUser: any) => {
   };
 };
 
-
 export const toggleSidebar = () => {
-  return async(dispatch:Dispatch<Action>) => {
-    dispatch({type:ActionType.TOGGLE_SIDEBAR})
-  }
-}
+  return async (dispatch: Dispatch<Action>) => {
+    dispatch({ type: ActionType.TOGGLE_SIDEBAR });
+  };
+};
+
+export const getStations = () => {
+  return async (dispatch: Dispatch<Action>) => {
+    dispatch({ type: ActionType.GET_STATION_BEGIN });
+    console.log("get station begins");
+    try {
+      const { data } = await authFetch("/station/getstations");
+      const { stations, totalStations, numOfPages } = data;
+      console.log("this is getstation", data);
+      dispatch({
+        type: ActionType.GET_STATION_SUCCESS,
+        payload: {
+          stations,
+          totalStations,
+          numOfPages,
+        },
+      });
+    } catch (err) {
+      console.log(err);
+      logoutUser();
+    }
+    clearAlert()
+  };
+};

@@ -1,7 +1,10 @@
-const allStations = () => {
-    return (
-        <div>all station page</div>
-    )
-}
 
-export default allStations
+
+const allStations = () => {
+  return (
+    <div>
+    </div>
+  );
+};
+
+export default allStations;
