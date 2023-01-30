@@ -16,10 +16,8 @@ const App = () => {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path="/" element={<ProtectedRoute />}>
-            <Route path="add-station" element={<AddStation />} />
-            <Route path="profile" element={<Profile />} />
-          </Route>
+          <Route path="add-station" element={<AddStation />} />
+          <Route path="profile" element={<Profile />} />
           <Route index element={<About />} />
           <Route path="/all-stations" element={<AllStations />} />
           <Route path="/register" element={<Register />} />

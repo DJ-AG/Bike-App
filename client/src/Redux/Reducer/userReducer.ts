@@ -1,36 +1,22 @@
 import ActionType from "../Action/types";
 import { Action } from "../Action/Interface";
-import initialState from "./initialState";
+import {userState} from "./initialState";
 
-interface RepositoriesState {
+interface RepositoriesUserState {
   userLoading: boolean;
   isLoading: boolean;
   showAlert: boolean;
   alertText: string;
   alertType: string;
   user: any;
-  status: string;
-  isEditing: boolean;
-  editStationId: string;
-  stationLocation: string;
-  stationTypeOptions: string[];
-  totalStations: number;
-  numOfPages: number;
-  page: number;
-  search: string;
-  stations: any;
-  searchStatus: string;
-  searchType: string;
   showSidebar: boolean;
-  sort: string;
-  sortOptions: any;
   token: string | null;
 }
 
-const reducer = (
-  state: RepositoriesState = initialState,
+const userReducer = (
+  state= userState,
   action: Action
-): RepositoriesState => {
+): RepositoriesUserState => {
   switch (action.type) {
     case ActionType.DISPLAY_ALERT:
       return {
@@ -72,7 +58,7 @@ const reducer = (
 
     case ActionType.LOGOUT_USER:
       return {
-        ...initialState,
+        ...userState,
         user: null,
         token: null,
       };
@@ -104,25 +90,9 @@ const reducer = (
         ...state,
         showSidebar: !state.showSidebar,
       };
-
-    case ActionType.GET_STATION_BEGIN:
-      return {
-        ...state,
-        isLoading: true,
-        showAlert: false,
-      };
-
-    case ActionType.GET_STATION_SUCCESS:
-      return {
-        ...state,
-        isLoading: false,
-        stations: action.payload.stations,
-        totalStations: action.payload.totalStations,
-        numOfPages: action.payload.numOfPages,
-      };
     default:
       return state;
   }
 };
 
-export default reducer;
+export default userReducer;

@@ -1,69 +1,45 @@
 import mongoose from "mongoose";
 
-interface Station {
-  Nimi: string;
-  Namn: string;
+export interface Station {
   Name: string;
-  Osoite: string;
   Adress: string;
-  Kaupunki: string;
-  Stad: string;
+  City: string;
   Operaattor: string;
-  Kapasiteet: string;
+  Capacity: string;
   x: string;
   y: string;
 }
 
 const StationSchema = new mongoose.Schema<Station>({
-  Nimi: {
-    type: String,
-    required: [true, "Anna nimi"],
-    trim: true,
-  },
-  Namn: {
-    type: String,
-    required: [true, "Ange namn"],
-    trim: true,
-  },
   Name: {
     type: String,
-    required: [true, "Please provide name"],
-    trim: true,
-  },
-  Osoite: {
-    type: String,
-    required: [true, "Anna Osoite / Please provide address"],
+    required: [true, "Please provide Nimi"],
   },
   Adress: {
     type: String,
-    required: [true, "Please provide adress"],
-  },
-  Kaupunki: {
-    type: String,
-    required: [true, "Anna kaupunki / Please provide City"],
-  },
-  Stad: {
-    type: String,
-    required: [true, "Please provide email"],
+    required: [true, "Please provide Adress"],
   },
   Operaattor: {
     type: String,
-    required: [true, "Please provide email"],
+    enum: ["CityBike Finland", "test"],
+    required: [true, "Please provide Operaattor"],
   },
-  Kapasiteet: {
+  City:{
+    type:String,
+    enum:["Helsinki","Espoo"]
+  },
+  Capacity: {
     type: String,
-    required: [true, "Please provide email"],
+    required: [true, "Please provide Kapasiteet"],
   },
   x: {
     type: String,
-    required: [true, "Please provide email"],
+    required: [true, "Please provide x"],
   },
   y: {
     type: String,
-    required: [true, "Please provide email"],
+    required: [true, "Please provide y"],
   },
 });
-
-
 
 export default mongoose.model("Station", StationSchema);

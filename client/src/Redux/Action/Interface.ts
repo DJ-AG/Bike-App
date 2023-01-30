@@ -46,6 +46,42 @@ export interface getStationsSuccess {
   type: "GET_STATION_SUCCESS";
   payload: any;
 }
+export interface handleChange {
+  type: "HANDLE_CHANGE";
+  payload: any;
+}
+export interface clearFilters {
+  type: "CLEAR_FILTERS";
+}
+export interface changePage {
+  type: "CHANGE_PAGE";
+  payload: { page: number };
+}
+export interface setEditStation {
+  type: "SET_EDIT_STATION";
+  payload: { id: number };
+}
+
+export interface deleteStationBegin {
+  type: "DELETE_STATION_BEGIN";
+}
+export interface deleteStationError {
+  type: "DELETE_STATION_ERROR";
+}
+export interface clearValues {
+  type: "CLEAR_VALUES";
+}
+export interface creatStationBegin {
+  type: "CREATE_STATION_BEGIN";
+}
+export interface createStationSuccess {
+  type: "CREATE_STATION_SUCCESS";
+}
+export interface createStationError {
+  type: "CREATE_STATION_ERROR";
+  payload: { msg: string };
+}
+
 
 export type Action =
   | DisplayAlert
@@ -59,4 +95,14 @@ export type Action =
   | logout
   | toggleSidebar
   | getStationsBegin
-  | getStationsSuccess;
+  | getStationsSuccess
+  | handleChange
+  | clearFilters
+  | changePage
+  | setEditStation
+  | deleteStationBegin
+  | deleteStationError
+  | clearValues
+  | creatStationBegin
+  | createStationSuccess
+  | createStationError;

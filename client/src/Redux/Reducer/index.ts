@@ -1,10 +1,11 @@
 import { combineReducers } from "redux";
-import reducer from "./reducer";
+import userReducer from "./userReducer";
+import stationReducer from './stationReducer'
 
-const reducers = combineReducers({
-  users: reducer,
+const rootReducer = combineReducers({
+  stations: stationReducer,users: userReducer,
 });
 
-export default reducers;
+export default rootReducer;
 
-export type RootState = ReturnType<typeof reducers>
+export type RootState = ReturnType<typeof rootReducer>

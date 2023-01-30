@@ -5,52 +5,34 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const StationSchema = new mongoose_1.default.Schema({
-    Nimi: {
-        type: String,
-        required: [true, "Anna nimi"],
-        trim: true,
-    },
-    Namn: {
-        type: String,
-        required: [true, "Ange namn"],
-        trim: true,
-    },
     Name: {
         type: String,
-        required: [true, "Please provide name"],
-        trim: true,
-    },
-    Osoite: {
-        type: String,
-        required: [true, "Anna Osoite / Please provide address"],
+        required: [true, "Please provide Nimi"],
     },
     Adress: {
         type: String,
-        required: [true, "Please provide adress"],
-    },
-    Kaupunki: {
-        type: String,
-        required: [true, "Anna kaupunki / Please provide City"],
-    },
-    Stad: {
-        type: String,
-        required: [true, "Please provide email"],
+        required: [true, "Please provide Adress"],
     },
     Operaattor: {
         type: String,
-        required: [true, "Please provide email"],
+        enum: ["CityBike Finland", "test"],
+        required: [true, "Please provide Operaattor"],
     },
-    Kapasiteet: {
+    City: {
         type: String,
-        required: [true, "Please provide email"],
+        enum: ["Helsinki", "Espoo"]
+    },
+    Capacity: {
+        type: String,
+        required: [true, "Please provide Kapasiteet"],
     },
     x: {
         type: String,
-        required: [true, "Please provide email"],
+        required: [true, "Please provide x"],
     },
     y: {
         type: String,
-        required: [true, "Please provide email"],
+        required: [true, "Please provide y"],
     },
 });
 exports.default = mongoose_1.default.model("Station", StationSchema);

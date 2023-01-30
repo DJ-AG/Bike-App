@@ -1,29 +1,38 @@
-const token = localStorage.getItem('token')
-const user = localStorage.getItem('user')
+const token = localStorage.getItem("token");
+export const stationState = {
+  Nimi:"",
+  Name: "",
+  Adress: "",
+  City: "",
+  CityTypeOptions: ["Helsinki", "Espoo"],
+  OperaattorTypeOptions: ["CityBike Finland","test"],
+  Operaattor:"",
+  Capacity: "",
+  x: "",
+  y: "",
+  stations: [],
+  editStationId: "",
+  isEditing: false,
+  search: "",
+  searchType: "all",
+  sort: "latest",
+  totalStations: 0,
+  numOfPages: 1,
+  page: 1,
+  isLoading: false,
+  showAlert: false,
+  alertText: "",
+  alertType: "",
+  pageLimit:10,
+};
+export const userState = {
+  userLoading: true,
+  isLoading: false,
+  showAlert: false,
+  alertText: "",
+  alertType: "",
+  user: null,
+  token: token,
+  showSidebar: false,
+};
 
-const state = {
-    userLoading: true,
-    isLoading: false,
-    showAlert: false,
-    alertText: "",
-    alertType: "",
-    user: user ? JSON.stringify(user) : null,
-    status: "pending",
-    isEditing: false,
-    editStationId: "",
-    stationLocation: "",
-    stationTypeOptions: ["Helsinki", "Espoo"],
-    totalStations: 0,
-    numOfPages: 1,
-    page: 1,
-    search: "",
-    stations: [],  
-    searchStatus: "all",
-    searchType: "all",
-    sort: "latest",
-    sortOptions: ["latest", "oldest", "a-z", "z-a"],
-    token:token,
-    showSidebar:false
-  };
-
-  export default state

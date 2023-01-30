@@ -1,137 +1,34 @@
-import "express-async-errors";
-import mongoose from 'mongoose'
-import moment from 'moment';
-import { NextFunction, Request, Response } from "express";
+import Station from "../models/Station";
 import { StatusCodes } from "http-status-codes";
 import { BadRequestError, NotFoundError } from "../errors";
-import Station from "../models/Station";
 
-interface Create {
-  Nimi: string;
-  Namn: string;
-  Name: string;
-  Osoite: string;
-  Adress: string;
-  Kaupunki: string;
-  Stad: string;
-  Operaattor: string;
-  Kapasiteet: string;
-  x: number;
-  y: number;
-}
-
-interface GetStations {
-  status: any;
-  station: any;
-  sort: any;
-  search: any;
-}
-
-
-const createStation = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  const {
-    Nimi,
-    Namn,
-    Name,
-    Osoite,
-    Adress,
-    Kaupunki,
-    Stad,
-    Operaattor,
-    Kapasiteet,
-    x,
-    y,
-  }: Create = req.body;
-  if (
-    !Nimi ||
-    !Namn ||
-    !Name ||
-    !Osoite ||
-    !Adress ||
-    !Kaupunki ||
-    !Stad ||
-    !Operaattor ||
-    !Kapasiteet ||
-    !x ||
-    !y
-  ) {
-    throw new BadRequestError("please provide all values");
+export const createStation = async (req: any, res: any) => {
+  const { Name, Adress, Operaattor, Capacity, x, y } = req.body;
+  if (!Name || !Adress || !Operaattor || !Capacity || !x || !y) {
+    throw new BadRequestError("Please Provide All Values");
   }
-  const stationAlreadyExists = await Station.findOne({
-    Nimi,
-    Namn,
-    Name,
-    Osoite,
-    Adress,
-    Kaupunki,
-    Stad,
-    Operaattor,
-    Kapasiteet,
-    x,
-    y,
-  });
-  if (stationAlreadyExists) {
-    throw new BadRequestError("Station already exists!");
-  }
-
-  const station = await Station.create({
-    Nimi,
-    Namn,
-    Name,
-    Osoite,
-    Adress,
-    Kaupunki,
-    Stad,
-    Operaattor,
-    Kapasiteet,
-    x,
-    y,
-  });
-  res.status(StatusCodes.OK).json({ station });
+  const station = await Station.create(req.body);
+  res.status(StatusCodes.CREATED).json({ station });
 };
 
-const getAllStations = async (req: any, res: Response) => {
-  const { status, station, sort, search }: GetStations = req.query;
-  const queryObject = {
-    createdBy: req.stations,
-  };
-  let result = Station.find(queryObject);
-  const page = Number(req.query.page) || 1;
-  const limit = Number(req.query.limit) || 10;
-  const skip = (page - 1) * limit;
-
-  result = result.skip(skip).limit(limit);
-
+export const getAllStations = async (req:any,res:any) => {
+  let result =  Station.find(req.stations)
   const stations = await result;
+  const totalStations = await Station.countDocuments();
+  const numOfPages = Math.ceil(totalStations/10);
+  res.status(StatusCodes.OK).json({ stations,totalStations,numOfPages });
+}
 
-  const totalStations = await Station.countDocuments(queryObject);
-  const numOfPages = Math.ceil(totalStations / limit);
+export const deleteStation = async(req:any,res:any) => {
+  const { id: stationId } = req.params;
 
-  res.status(StatusCodes.OK).json({ stations, totalStations, numOfPages });
-};
+  const station = await Station.findOne({ _id: stationId });
 
+  if (!station) {
+    throw new NotFoundError(`No station with id :${stationId}`);
+  }
 
-const deleteStation = async (req: Request, res: Response) => {
-    const { id: stationId } = req.params;
-  
-    const station = await Station.findOne({ _id: stationId });
-  
-    if (!station) {
-      throw new NotFoundError(`No job with id :${stationId}`);
-    }
-    
-    await station.remove();
-  
-    res.status(StatusCodes.OK).json({ msg: 'Success! Job removed' });
-  };
+  await station.remove();
 
-
-export {
-  createStation,
-  getAllStations,
-  deleteStation,
+  res.status(StatusCodes.OK).json({ msg: 'Success! station removed' });
 };

@@ -1,8 +1,8 @@
 import axios from "axios";
 import { Dispatch } from "redux";
 import ActionType from "./types";
-
 import { Action } from "./Interface";
+import { stationState } from "../Reducer/initialState";
 
 const authFetch = axios.create({
   baseURL: "/api/v1",
@@ -89,26 +89,101 @@ export const toggleSidebar = () => {
   };
 };
 
+export const createStation = (
+  Name: string,
+  Adress: string,
+  City: string,
+  Operaattor: string,
+  Capacity: string,
+  x: string,
+  y: string
+) => {
+  return async (dispatch: Dispatch<Action>) => {
+    const data = {
+      Name,
+      Adress,
+      City,
+      Operaattor,
+      Capacity,
+      x,
+      y,
+    };
+    dispatch({ type: ActionType.CREATE_STATION_BEGIN });
+    try {
+      console.log(data);
+      await authFetch.post("/station/create", data);
+      dispatch({ type: ActionType.CREATE_STATION_SUCCESS });
+      dispatch({ type: ActionType.CLEAR_VALUES });
+    } catch (error: any) {
+      if (error.response.status === 401) return;
+      dispatch({
+        type: ActionType.CREATE_STATION_ERROR,
+        payload: { msg: error.response.data.msg },
+      });
+    }
+    getStations()
+    clearAlert();
+  };
+};
+
 export const getStations = () => {
+  let url = "/station/getstations"
   return async (dispatch: Dispatch<Action>) => {
     dispatch({ type: ActionType.GET_STATION_BEGIN });
-    console.log("get station begins");
     try {
-      const { data } = await authFetch("/station/getstations");
-      const { stations, totalStations, numOfPages } = data;
-      console.log("this is getstation", data);
-      dispatch({
-        type: ActionType.GET_STATION_SUCCESS,
-        payload: {
-          stations,
-          totalStations,
-          numOfPages,
-        },
-      });
-    } catch (err) {
-      console.log(err);
-      logoutUser();
+      const {data} = await authFetch(url)
+      const {stations,totalStations,numOfPages} = data
+      dispatch({type:ActionType.GET_STATION_SUCCESS , payload:{stations,totalStations,numOfPages}})
+    } catch (err:any) {
+      console.log(err.response)
+      logoutUser()
     }
     clearAlert()
+  };
+};
+
+export const handleChange = ({
+  name,
+  value,
+}: {
+  name: string;
+  value: number;
+}) => {
+  return async (dispatch: Dispatch<Action>) => {
+    dispatch({ type: ActionType.HANDLE_CHANGE, payload: { name, value } });
+  };
+};
+
+export const clearFilters = () => {
+  return async (dispatch: Dispatch<Action>) => {
+    dispatch({ type: ActionType.CLEAR_FILTERS });
+  };
+};
+export const clearValues = () => {
+  return async (dispatch: Dispatch<Action>) => {
+    dispatch({ type: ActionType.CLEAR_VALUES });
+  };
+};
+
+export const changePage = (page: number) => {
+  return async (dispatch: Dispatch<Action>) => {
+    dispatch({ type: ActionType.CHANGE_PAGE, payload: { page } });
+  };
+};
+
+export const deleteStation = (stationId: any) => {
+  return async (dispatch: Dispatch<Action>) => {
+    dispatch({ type: ActionType.DELETE_STATION_BEGIN });
+    try {
+      await authFetch.delete(`/station/${stationId}`);
+      clearAlert();
+      getStations()
+    } catch (error: any) {
+      if (error.response.status === 401) return;
+      dispatch({
+        type: ActionType.DELETE_STATION_ERROR,
+        payload: { msg: error.response.data.msg },
+      });
+    }
   };
 };
