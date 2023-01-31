@@ -1,18 +1,26 @@
 const token = localStorage.getItem("token");
 export const stationState = {
-  Nimi:"",
+  Nimi: "",
   Name: "",
   Adress: "",
   City: "",
   CityTypeOptions: ["Helsinki", "Espoo"],
-  OperaattorTypeOptions: ["CityBike Finland","test"],
-  Operaattor:"",
+  OperaattorTypeOptions: ["CityBike Finland", "test"],
+  Operaattor: "",
   Capacity: "",
   x: "",
   y: "",
   stations: [],
   editStationId: "",
-  isEditing: false,
+
+  /*Modal Data */
+  ModalToggle: false,
+  ModalAdress: "",
+
+  /*Map Data */
+  X: "",
+  Y: "",
+
   search: "",
   searchType: "all",
   sort: "latest",
@@ -23,7 +31,7 @@ export const stationState = {
   showAlert: false,
   alertText: "",
   alertType: "",
-  pageLimit:10,
+  pageLimit: 10,
 };
 export const userState = {
   userLoading: true,
@@ -35,4 +43,3 @@ export const userState = {
   token: token,
   showSidebar: false,
 };
-

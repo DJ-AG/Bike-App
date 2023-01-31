@@ -2,7 +2,6 @@ import axios from "axios";
 import { Dispatch } from "redux";
 import ActionType from "./types";
 import { Action } from "./Interface";
-import { stationState } from "../Reducer/initialState";
 
 const authFetch = axios.create({
   baseURL: "/api/v1",
@@ -110,7 +109,6 @@ export const createStation = (
     };
     dispatch({ type: ActionType.CREATE_STATION_BEGIN });
     try {
-      console.log(data);
       await authFetch.post("/station/create", data);
       dispatch({ type: ActionType.CREATE_STATION_SUCCESS });
       dispatch({ type: ActionType.CLEAR_VALUES });
@@ -121,24 +119,27 @@ export const createStation = (
         payload: { msg: error.response.data.msg },
       });
     }
-    getStations()
+    getStations();
     clearAlert();
   };
 };
 
 export const getStations = () => {
-  let url = "/station/getstations"
+  let url = "/station/getstations";
   return async (dispatch: Dispatch<Action>) => {
     dispatch({ type: ActionType.GET_STATION_BEGIN });
     try {
-      const {data} = await authFetch(url)
-      const {stations,totalStations,numOfPages} = data
-      dispatch({type:ActionType.GET_STATION_SUCCESS , payload:{stations,totalStations,numOfPages}})
-    } catch (err:any) {
-      console.log(err.response)
-      logoutUser()
+      const { data } = await authFetch(url);
+      const { stations, totalStations, numOfPages } = data;
+      dispatch({
+        type: ActionType.GET_STATION_SUCCESS,
+        payload: { stations, totalStations, numOfPages },
+      });
+    } catch (err: any) {
+      console.log(err.response);
+      logoutUser();
     }
-    clearAlert()
+    clearAlert();
   };
 };
 
@@ -171,13 +172,25 @@ export const changePage = (page: number) => {
   };
 };
 
+export const handleModal = (x: string, y: string, Adress: string) => {
+  return async (dispatch: Dispatch<Action>) => {
+    dispatch({ type: ActionType.TOGGLE_MODAL, payload:{x,y,Adress} });
+  };
+};
+
+export const closeModal = () => {
+  return async(dispatch:Dispatch<Action>)=>{
+    dispatch({type:ActionType.CLOSE_MODAL})
+  }
+}
+
 export const deleteStation = (stationId: any) => {
   return async (dispatch: Dispatch<Action>) => {
     dispatch({ type: ActionType.DELETE_STATION_BEGIN });
     try {
       await authFetch.delete(`/station/${stationId}`);
       clearAlert();
-      getStations()
+      getStations();
     } catch (error: any) {
       if (error.response.status === 401) return;
       dispatch({

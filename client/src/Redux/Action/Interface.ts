@@ -81,8 +81,13 @@ export interface createStationError {
   type: "CREATE_STATION_ERROR";
   payload: { msg: string };
 }
-
-
+export interface handleModal {
+  type: "TOGGLE_MODAL";
+  payload: { x: any; y: any; Adress: any };
+}
+export interface closeModal {
+  type: "CLOSE_MODAL";
+}
 export type Action =
   | DisplayAlert
   | ClearAlert
@@ -105,4 +110,6 @@ export type Action =
   | clearValues
   | creatStationBegin
   | createStationSuccess
-  | createStationError;
+  | createStationError
+  | handleModal
+  | closeModal;

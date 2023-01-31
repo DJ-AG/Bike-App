@@ -39,7 +39,7 @@ const stationReducer = (state = stationState, action: Action) => {
       };
     case ActionType.GET_STATION_SUCCESS:
       console.log("GET_STATION_SUCCESS trigger");
-      console.log(action.payload)
+      console.log(action.payload);
       return {
         ...state,
         isLoading: false,
@@ -100,6 +100,25 @@ const stationReducer = (state = stationState, action: Action) => {
         alertType: "danger",
         alertText: action.payload.msg,
       };
+    case ActionType.TOGGLE_MODAL:
+      console.log("payload", action.payload);
+      return {
+        ...state,
+        ModalToggle: !state.ModalToggle,
+        X: action.payload.x,
+        Y: action.payload.y,
+        ModalAdress: action.payload.Adress,
+      };
+    case ActionType.CLOSE_MODAL:
+      console.log("modal closed!");
+      return {
+        ...state,
+        ModalToggle: !state.ModalToggle,
+        ModalX: "",
+        ModalY: "",
+        ModalAdress: "",
+      };
+
     default:
       return state;
   }
