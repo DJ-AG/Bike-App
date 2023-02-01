@@ -2,12 +2,12 @@
 
 # dependencies
 /node_modules
-/googleMapKeys.js
 /.pnp
 .pnp.js
 
 # testing
 /coverage
+keys/
 
 # production
 /build

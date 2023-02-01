@@ -11,11 +11,9 @@ import FormRowSelect from "./FormRowSelect/formRowSelect";
 import FormRow from "./FormRow/FormRow";
 import Alert from "./Alert/Alert";
 import Modal from "./Modal/modal";
-import Backdrop from "./Backdrop/backdrop";
 import Map from './Map/map'
 
 export {
-  Backdrop,
   Modal,
   SearchContainer,
   Station,

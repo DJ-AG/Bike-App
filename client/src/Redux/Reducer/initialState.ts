@@ -7,7 +7,7 @@ export const stationState = {
   CityTypeOptions: ["Helsinki", "Espoo"],
   OperaattorTypeOptions: ["CityBike Finland", "test"],
   Operaattor: "",
-  Capacity: "",
+  Kapasiteet: "",
   x: "",
   y: "",
   stations: [],
@@ -20,6 +20,7 @@ export const stationState = {
   /*Map Data */
   X: "",
   Y: "",
+  scriptLoaded:false,
 
   search: "",
   searchType: "all",

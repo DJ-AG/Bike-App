@@ -1,7 +1,4 @@
-import {
-  FaLocationArrow,
-  FaCity,
-} from "react-icons/fa";
+import { FaLocationArrow, FaCity,FaStoreAlt } from "react-icons/fa";
 import { MdAssistantNavigation, MdDirectionsBike } from "react-icons/md";
 import Wrapper from "./station_wrapper";
 import { Modal, StationInfo } from "../index";
@@ -18,6 +15,7 @@ const Job = ({
   x,
   y,
   Operaattor,
+  Kapasiteet,
 }: {
   Kaupunki: any;
   _id: any;
@@ -29,9 +27,11 @@ const Job = ({
   isLoading: any;
   Operaattor: any;
   Osoite: string;
+  Kapasiteet:string;
 }) => {
   const { deleteStation, handleModal } = useAction();
   const { ModalToggle } = useTypedSelector((state) => state.stations);
+
   return (
     <Wrapper>
       {ModalToggle && <Modal />}
@@ -40,28 +40,22 @@ const Job = ({
         <div className="info">
           <h5>{Name}</h5>
           <p>
-            <FaCity /> {Kaupunki || City}
+            <FaCity /> {Kaupunki}
           </p>
         </div>
       </header>
       <div className="content">
         <div className="content-center">
-          <StationInfo
-            icon={<FaLocationArrow />}
-            text={Adress || Osoite || ""}
-          />
-          <StationInfo icon={<MdDirectionsBike />} text={Operaattor || ""} />
-          <StationInfo
-            icon={<MdAssistantNavigation />}
-            text={`Y: ${y}, X: ${x}` || ""}
-          />
+          <StationInfo icon={<FaLocationArrow />} text={`Adress: ${Osoite}`} />
+          <StationInfo icon={<MdDirectionsBike />} text={`Bike Capasity: ${Kapasiteet}`} />
+          <StationInfo icon={<FaStoreAlt />} text={`Provider: ${Operaattor}`} />
         </div>
         <footer>
           <div className="actions">
             <button
               type="button"
               className="btn modal-btn"
-              onClick={() => handleModal(x,y,Adress)}
+              onClick={() => handleModal(x, y, Osoite ? Osoite : Adress)}
             >
               View Map
             </button>

@@ -22,7 +22,7 @@ const StationSchema = new mongoose_1.default.Schema({
         type: String,
         enum: ["Helsinki", "Espoo"]
     },
-    Capacity: {
+    Kapasiteet: {
         type: String,
         required: [true, "Please provide Kapasiteet"],
     },

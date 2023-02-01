@@ -5,7 +5,7 @@ export interface Station {
   Adress: string;
   City: string;
   Operaattor: string;
-  Capacity: string;
+  Kapasiteet: string;
   x: string;
   y: string;
 }
@@ -28,7 +28,7 @@ const StationSchema = new mongoose.Schema<Station>({
     type:String,
     enum:["Helsinki","Espoo"]
   },
-  Capacity: {
+  Kapasiteet: {
     type: String,
     required: [true, "Please provide Kapasiteet"],
   },

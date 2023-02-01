@@ -16,12 +16,14 @@ const Wrapper = styled.div`
   .close-btn {
     color: var(--red-dark);
     background: var(--green-light);
-    margin-right: 0.5rem;
-    width:10%;
-    margin-left:80%;
+    font-size:20px;
     background:none;
     box-shadow:unset;
-    
+    display:flex;
+    margin-left: auto;
+   :hover{
+    color:var(--red-light)
+   } 
   }
   header {
     width: 100%;
@@ -32,6 +34,7 @@ const Wrapper = styled.div`
 
   h2 {
     margin: 0.5rem;
+    font-size:20px;
   }
 
   form {

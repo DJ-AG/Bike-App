@@ -93,7 +93,7 @@ export const createStation = (
   Adress: string,
   City: string,
   Operaattor: string,
-  Capacity: string,
+  Kapasiteet: string,
   x: string,
   y: string
 ) => {
@@ -103,7 +103,7 @@ export const createStation = (
       Adress,
       City,
       Operaattor,
-      Capacity,
+      Kapasiteet,
       x,
       y,
     };
@@ -112,6 +112,7 @@ export const createStation = (
       await authFetch.post("/station/create", data);
       dispatch({ type: ActionType.CREATE_STATION_SUCCESS });
       dispatch({ type: ActionType.CLEAR_VALUES });
+      console.log(data)
     } catch (error: any) {
       if (error.response.status === 401) return;
       dispatch({
@@ -173,16 +174,18 @@ export const changePage = (page: number) => {
 };
 
 export const handleModal = (x: string, y: string, Adress: string) => {
+  console.log(x,y,Adress)
   return async (dispatch: Dispatch<Action>) => {
-    dispatch({ type: ActionType.TOGGLE_MODAL, payload:{x,y,Adress} });
+    dispatch({ type: ActionType.TOGGLE_MODAL, payload: { x, y, Adress } });
   };
 };
 
 export const closeModal = () => {
-  return async(dispatch:Dispatch<Action>)=>{
-    dispatch({type:ActionType.CLOSE_MODAL})
-  }
-}
+  return async (dispatch: Dispatch<Action>) => {
+    dispatch({ type: ActionType.CLOSE_MODAL });
+  };
+};
+
 
 export const deleteStation = (stationId: any) => {
   return async (dispatch: Dispatch<Action>) => {
@@ -191,6 +194,7 @@ export const deleteStation = (stationId: any) => {
       await authFetch.delete(`/station/${stationId}`);
       clearAlert();
       getStations();
+      window.location.reload()
     } catch (error: any) {
       if (error.response.status === 401) return;
       dispatch({

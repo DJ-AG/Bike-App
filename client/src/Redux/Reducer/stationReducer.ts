@@ -2,32 +2,6 @@ import ActionType from "../Action/types";
 import { Action } from "../Action/Interface";
 import { stationState } from "./initialState";
 
-// interface RepositoriesStationState {
-//   Name: string;
-//   Adress: string;
-//   City: string;
-//   CityTypeOptions: string[];
-//   OperaattorTypeOptions: string[];
-//   Operaattor: string;
-//   Capacity: string;
-//   x: string;
-//   y: string;
-//   stations: string[];
-//   editStationId: string;
-//   isEditing: boolean;
-//   search: string;
-//   searchType: string;
-//   sort: string;
-//   sortOptions: string[];
-//   totalStations: number;
-//   numOfPages: number;
-//   page: number;
-//   isLoading: boolean;
-//   showAlert: boolean;
-//   alertText: string;
-//   alertType: string;
-// }
-
 const stationReducer = (state = stationState, action: Action) => {
   switch (action.type) {
     case ActionType.GET_STATION_BEGIN:
@@ -72,7 +46,7 @@ const stationReducer = (state = stationState, action: Action) => {
         Adress: "",
         City: "",
         Operaattor: "",
-        Capacity: "",
+        Kapasiteet: "",
         x: "",
         y: "",
       };

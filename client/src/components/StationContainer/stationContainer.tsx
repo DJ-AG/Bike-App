@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import {Station, Loading, Alert, PageBtnContainer } from "../index";
+import { Station, Loading, Alert, PageBtnContainer } from "../index";
 import Wrapper from "./stationContainer_wrapper";
 import { useTypedSelector } from "../../hooks/useTypeSelector";
 import { useAction } from "../../hooks/useActions";
@@ -34,24 +34,18 @@ const StationContainer = () => {
   }
   const indexOfLastStation = page * pageLimit;
   const indexOfFirstStation = indexOfLastStation - pageLimit;
-  const currentStations = stations.slice(
-    indexOfFirstStation,
-    indexOfLastStation
-  );
-
-  const Render = currentStations
+  const Render = stations
     .filter((find: any) =>
       find.Name
-        ? find.Name.toLowerCase().includes(search)
-        : find.Adress.toLowerCase().includes(search)
+        ? find.Name.toLowerCase().includes(search.toLowerCase())
+        : find.Adress.toLowerCase().includes(search.toLowerCase())
     )
+    .slice(indexOfFirstStation, indexOfLastStation)
     .map((station: any) => {
-      return (
-        <div>
-          <Station key={station._id} {...station} />
-        </div>
-      );
+      console.log(station._id);
+      return <Station key={station._id} {...station} />;
     });
+
   return (
     <Wrapper>
       {showAlert && <Alert />}

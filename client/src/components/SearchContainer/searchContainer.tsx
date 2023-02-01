@@ -1,4 +1,4 @@
-import { FormRow, FormRowSelect } from "../index";
+import { FormRow } from "../index";
 import { useState, useMemo } from "react";
 import { useTypedSelector } from "../../hooks/useTypeSelector";
 import { useAction } from "../../hooks/useActions";
@@ -6,15 +6,8 @@ import Wrapper from './searchContainer_wrapper'
 const SearchContainer = () => {
   const [localSearch, setLocalSearch] = useState("");
   const {
-    isLoading,
-    search,
-    searchType,
-    sort,
-  } = useTypedSelector((state) => state.stations);
+    isLoading} = useTypedSelector((state) => state.stations);
   const { handleChange,clearFilters } = useAction();
-  const handleSearch = (e:any) => {
-    handleChange({ name: e.target.name, value: e.target.value });
-  };
   const handleSubmit = (e:any) => {
     e.preventDefault();
     setLocalSearch("");
@@ -45,7 +38,6 @@ const SearchContainer = () => {
             value={localSearch}
             handleChange={optimizedDebounce}
           />
-          {/* search by status */}
           <button
             className="btn btn-block btn-danger"
             disabled={isLoading}

@@ -88,6 +88,7 @@ export interface handleModal {
 export interface closeModal {
   type: "CLOSE_MODAL";
 }
+
 export type Action =
   | DisplayAlert
   | ClearAlert

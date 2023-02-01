@@ -11,7 +11,7 @@ const AddStation = () => {
     CityTypeOptions,
     Operaattor,
     OperaattorTypeOptions,
-    Capacity,
+    Kapasiteet,
     x,
     y,
     showAlert,
@@ -22,11 +22,11 @@ const AddStation = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    if (!Name || !Adress || !City || !Operaattor || !Capacity || !x || !y) {
+    if (!Name || !Adress || !City || !Operaattor || !Kapasiteet || !x || !y) {
       displayAlert();
       return;
     }
-    createStation(Name, Adress, City, Operaattor, Capacity, x, y);
+    createStation(Name, Adress, City, Operaattor, Kapasiteet, x, y);
   };
 
   const handleStationInput = (e: any) => {
@@ -60,9 +60,9 @@ const AddStation = () => {
           {/* Capacity */}
           <FormRow
             type="text"
-            name="Capacity"
+            name="Kapasiteet"
             labelText="Capacity"
-            value={Capacity}
+            value={Kapasiteet}
             handleChange={handleStationInput}
           />
           {/* Coordinates */}

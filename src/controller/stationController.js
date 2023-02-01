@@ -17,8 +17,8 @@ const Station_1 = __importDefault(require("../models/Station"));
 const http_status_codes_1 = require("http-status-codes");
 const errors_1 = require("../errors");
 const createStation = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { Name, Adress, Operaattor, Capacity, x, y } = req.body;
-    if (!Name || !Adress || !Operaattor || !Capacity || !x || !y) {
+    const { Name, Adress, Operaattor, Kapasiteet, x, y } = req.body;
+    if (!Name || !Adress || !Operaattor || !Kapasiteet || !x || !y) {
         throw new errors_1.BadRequestError("Please Provide All Values");
     }
     const station = yield Station_1.default.create(req.body);
@@ -40,6 +40,6 @@ const deleteStation = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         throw new errors_1.NotFoundError(`No station with id :${stationId}`);
     }
     yield station.remove();
-    res.status(http_status_codes_1.StatusCodes.OK).json({ msg: 'Success! station removed' });
+    res.status(http_status_codes_1.StatusCodes.OK).json({ msg: "Success! station removed" });
 });
 exports.deleteStation = deleteStation;
