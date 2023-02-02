@@ -24,9 +24,6 @@ if(process.env.NODE_ENV !== 'production'){
   app.use(morgan('dev'))
 }
 app.use(express.json());
-app.get("/test", (req: Request, res: Response) => {
-  res.json({msg:'Welcome! WORKS !'});
-});
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/station", stationRouter);

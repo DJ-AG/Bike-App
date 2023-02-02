@@ -30,9 +30,6 @@ if (process.env.NODE_ENV !== 'production') {
     app.use((0, morgan_1.default)('dev'));
 }
 app.use(express_1.default.json());
-app.get("/test", (req, res) => {
-    res.json({ msg: 'Welcome! WORKS !' });
-});
 app.use("/api/v1/auth", authRouter_1.default);
 app.use("/api/v1/station", stationRouter_1.default);
 app.use((req, res, next) => {
