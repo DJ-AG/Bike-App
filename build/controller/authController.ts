@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from "express";
 import { StatusCodes } from "http-status-codes";
 import { BadRequestError, UnAuthenticatedError } from "../errors/index";
 import attachCookie from "../utils/attachCookie";
-import User from "../models/User.js";
+import User from "../models/User";
 
 interface Register {
   name: string;

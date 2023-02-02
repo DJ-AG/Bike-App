@@ -12,10 +12,10 @@ const App = () => {
         <Navbar />
         <Routes>
           {/*Future implementation will be using ProtectedRoute when profile page is up and running */}
-          <Route path="profile" element={<UnderConstruction />} />
-          <Route path="add-station" element={<AddStation />} />
-          <Route index element={<About />} />
-          <Route path="/all-stations" element={<AllStations />} />
+          <Route path="/profile" element={<UnderConstruction />} />
+          <Route path="/create" element={<AddStation />} />
+          <Route path ="/" index element={<About />} />
+          <Route path="/getstations" element={<AllStations />} />
           <Route path="/register" element={<Register />} />
           <Route path="*" element={<Error />} />
         </Routes>

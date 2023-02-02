@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require("express-async-errors");
 const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
+const path_1 = __importDefault(require("path"));
 mongoose_1.default.set('strictQuery', false);
 const app = (0, express_1.default)();
 const dotenv_1 = __importDefault(require("dotenv"));
@@ -28,14 +29,18 @@ const stationRouter_1 = __importDefault(require("./routes/stationRouter"));
 //middleware
 const error_handler_1 = __importDefault(require("./middleware/error-handler"));
 const not_found_1 = __importDefault(require("./middleware/not-found"));
-if (process.env.NODE_ENV !== 'production') {
+if ((process.env.NODE_ENV || '').trim() !== 'production') {
     app.use((0, morgan_1.default)('dev'));
 }
+app.use(express_1.default.static(path_1.default.resolve(__dirname, './client/build')));
 app.use(express_1.default.json());
 app.use("/api/v1/auth", authRouter_1.default);
 app.use("/api/v1/station", stationRouter_1.default);
 app.use((req, res, next) => {
     next();
+});
+app.get('*', (req, res) => {
+    res.sendFile(path_1.default.resolve(__dirname, './client/build', 'index.html'));
 });
 app.use(not_found_1.default);
 app.use(error_handler_1.default);
