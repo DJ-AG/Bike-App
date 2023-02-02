@@ -14,6 +14,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 require("express-async-errors");
 const express_1 = __importDefault(require("express"));
+const mongoose_1 = __importDefault(require("mongoose"));
+mongoose_1.default.set('strictQuery', false);
 const app = (0, express_1.default)();
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
@@ -33,8 +35,6 @@ app.use(express_1.default.json());
 app.use("/api/v1/auth", authRouter_1.default);
 app.use("/api/v1/station", stationRouter_1.default);
 app.use((req, res, next) => {
-    console.log(req.url);
-    console.log(req.method);
     next();
 });
 app.use(not_found_1.default);
@@ -42,7 +42,7 @@ app.use(error_handler_1.default);
 const start = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield (0, connect_1.default)(process.env.MONGO_URL);
-        app.listen(process.env.PORT, () => {
+        app.listen(process.env.PORT || 5000, () => {
             console.log(`Server is listening on port ${process.env.PORT}...`);
         });
     }
