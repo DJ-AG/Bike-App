@@ -3,8 +3,8 @@ import { StatusCodes } from "http-status-codes";
 import { BadRequestError, NotFoundError } from "../errors";
 
 export const createStation = async (req: any, res: any) => {
-  const { Name, Adress, Operaattor, Kapasiteet, x, y } = req.body;
-  if (!Name || !Adress || !Operaattor || !Kapasiteet || !x || !y) {
+  const { Name, Osoite, Operaattor, Kapasiteet, x, y, Kaupunki } = req.body;
+  if (!Name || !Osoite || !Operaattor || !Kapasiteet || !x || !y || !Kaupunki) {
     throw new BadRequestError("Please Provide All Values");
   }
   const station = await Station.create(req.body);
@@ -15,7 +15,6 @@ export const getAllStations = async (req: any, res: any) => {
   let result = Station.find(req.stations);
   const stations = await result;
   const totalStations = await Station.countDocuments();
-
 
   const numOfPages = Math.ceil(totalStations / 10);
   res.status(StatusCodes.OK).json({ stations, totalStations, numOfPages });

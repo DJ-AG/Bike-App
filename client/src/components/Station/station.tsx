@@ -1,14 +1,13 @@
-import { FaLocationArrow, FaCity,FaStoreAlt } from "react-icons/fa";
-import { MdAssistantNavigation, MdDirectionsBike } from "react-icons/md";
+import { FaLocationArrow, FaCity, FaStoreAlt } from "react-icons/fa";
+import { MdDirectionsBike } from "react-icons/md";
 import Wrapper from "./station_wrapper";
 import { Modal, StationInfo } from "../index";
 import { useAction } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypeSelector";
 
-const Job = ({
+const Station = ({
   _id,
   Name,
-  City,
   Adress,
   Osoite,
   Kaupunki,
@@ -27,7 +26,7 @@ const Job = ({
   isLoading: any;
   Operaattor: any;
   Osoite: string;
-  Kapasiteet:string;
+  Kapasiteet: string;
 }) => {
   const { deleteStation, handleModal } = useAction();
   const { ModalToggle } = useTypedSelector((state) => state.stations);
@@ -47,7 +46,10 @@ const Job = ({
       <div className="content">
         <div className="content-center">
           <StationInfo icon={<FaLocationArrow />} text={`Adress: ${Osoite}`} />
-          <StationInfo icon={<MdDirectionsBike />} text={`Bike Capasity: ${Kapasiteet}`} />
+          <StationInfo
+            icon={<MdDirectionsBike />}
+            text={`Bike Capasity: ${Kapasiteet}`}
+          />
           <StationInfo icon={<FaStoreAlt />} text={`Provider: ${Operaattor}`} />
         </div>
         <footer>
@@ -73,4 +75,4 @@ const Job = ({
   );
 };
 
-export default Job;
+export default Station;

@@ -1,12 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
-import { Error, Register, ProtectedRoute } from "./pages/index";
-import {
-  AddStation,
-  AllStations,
-  Profile,
-  About,
-} from "./pages/Dashboard/index";
+import { Error, Register, UnderConstruction } from "./pages/index";
+import { AddStation, AllStations, About } from "./pages/Dashboard/index";
 import { Provider } from "react-redux";
 import { store } from "./Redux/store";
 
@@ -16,8 +11,9 @@ const App = () => {
       <BrowserRouter>
         <Navbar />
         <Routes>
+          {/*Future implementation will be using ProtectedRoute when profile page is up and running */}
+          <Route path="profile" element={<UnderConstruction />} />
           <Route path="add-station" element={<AddStation />} />
-          <Route path="profile" element={<Profile />} />
           <Route index element={<About />} />
           <Route path="/all-stations" element={<AllStations />} />
           <Route path="/register" element={<Register />} />

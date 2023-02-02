@@ -9,7 +9,7 @@ const StationSchema = new mongoose_1.default.Schema({
         type: String,
         required: [true, "Please provide Nimi"],
     },
-    Adress: {
+    Osoite: {
         type: String,
         required: [true, "Please provide Adress"],
     },
@@ -18,9 +18,9 @@ const StationSchema = new mongoose_1.default.Schema({
         enum: ["CityBike Finland", "test"],
         required: [true, "Please provide Operaattor"],
     },
-    City: {
+    Kaupunki: {
         type: String,
-        enum: ["Helsinki", "Espoo"]
+        enum: ["Helsinki", "Espoo"],
     },
     Kapasiteet: {
         type: String,

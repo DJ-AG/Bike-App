@@ -6,9 +6,9 @@ import Wrapper from "./addStation_wrapper";
 const AddStation = () => {
   const {
     Name,
-    Adress,
-    City,
-    CityTypeOptions,
+    Osoite,
+    Kaupunki,
+    KaupunkiTypeOption,
     Operaattor,
     OperaattorTypeOptions,
     Kapasiteet,
@@ -22,11 +22,11 @@ const AddStation = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    if (!Name || !Adress || !City || !Operaattor || !Kapasiteet || !x || !y) {
+    if (!Name || !Osoite || !Kaupunki || !Operaattor || !Kapasiteet || !x || !y) {
       displayAlert();
       return;
     }
-    createStation(Name, Adress, City, Operaattor, Kapasiteet, x, y);
+    createStation(Name, Osoite, Kaupunki, Operaattor, Kapasiteet, x, y);
   };
 
   const handleStationInput = (e: any) => {
@@ -53,8 +53,8 @@ const AddStation = () => {
           <FormRow
             type="text"
             labelText="Adress"
-            name="Adress"
-            value={Adress}
+            name="Osoite"
+            value={Osoite}
             handleChange={handleStationInput}
           />
           {/* Capacity */}
@@ -83,10 +83,10 @@ const AddStation = () => {
           {/* City */}
           <FormRowSelect
             labelText="City"
-            name="City"
-            value={City}
+            name="Kaupunki"
+            value={Kaupunki}
             handleChange={handleStationInput}
-            list={["Select City", ...CityTypeOptions]}
+            list={["Select City", ...KaupunkiTypeOption]}
           />
           {/* Operaattor */}
           <FormRowSelect

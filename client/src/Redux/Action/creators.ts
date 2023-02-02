@@ -90,8 +90,8 @@ export const toggleSidebar = () => {
 
 export const createStation = (
   Name: string,
-  Adress: string,
-  City: string,
+  Osoite: string,
+  Kaupunki: string,
   Operaattor: string,
   Kapasiteet: string,
   x: string,
@@ -100,8 +100,8 @@ export const createStation = (
   return async (dispatch: Dispatch<Action>) => {
     const data = {
       Name,
-      Adress,
-      City,
+      Osoite,
+      Kaupunki,
       Operaattor,
       Kapasiteet,
       x,
@@ -112,7 +112,7 @@ export const createStation = (
       await authFetch.post("/station/create", data);
       dispatch({ type: ActionType.CREATE_STATION_SUCCESS });
       dispatch({ type: ActionType.CLEAR_VALUES });
-      console.log(data)
+      console.log(data);
     } catch (error: any) {
       if (error.response.status === 401) return;
       dispatch({
@@ -174,7 +174,7 @@ export const changePage = (page: number) => {
 };
 
 export const handleModal = (x: string, y: string, Adress: string) => {
-  console.log(x,y,Adress)
+  console.log(x, y, Adress);
   return async (dispatch: Dispatch<Action>) => {
     dispatch({ type: ActionType.TOGGLE_MODAL, payload: { x, y, Adress } });
   };
@@ -186,7 +186,6 @@ export const closeModal = () => {
   };
 };
 
-
 export const deleteStation = (stationId: any) => {
   return async (dispatch: Dispatch<Action>) => {
     dispatch({ type: ActionType.DELETE_STATION_BEGIN });
@@ -194,7 +193,7 @@ export const deleteStation = (stationId: any) => {
       await authFetch.delete(`/station/${stationId}`);
       clearAlert();
       getStations();
-      window.location.reload()
+      window.location.reload();
     } catch (error: any) {
       if (error.response.status === 401) return;
       dispatch({

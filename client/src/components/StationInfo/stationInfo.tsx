@@ -1,6 +1,6 @@
 import Wrapper from "./stationInfo_wrapper";
 
-const JobInfo = ({ icon, text }: { icon: any; text: string }) => {
+const StationInfo = ({ icon, text }: { icon: any; text: string }) => {
   return (
     <Wrapper>
       <span className="icon">{icon}</span>
@@ -9,4 +9,4 @@ const JobInfo = ({ icon, text }: { icon: any; text: string }) => {
   );
 };
 
-export default JobInfo;
+export default StationInfo;

@@ -2,8 +2,8 @@ import mongoose from "mongoose";
 
 export interface Station {
   Name: string;
-  Adress: string;
-  City: string;
+  Osoite: string;
+  Kaupunki: string;
   Operaattor: string;
   Kapasiteet: string;
   x: string;
@@ -15,7 +15,7 @@ const StationSchema = new mongoose.Schema<Station>({
     type: String,
     required: [true, "Please provide Nimi"],
   },
-  Adress: {
+  Osoite: {
     type: String,
     required: [true, "Please provide Adress"],
   },
@@ -24,9 +24,9 @@ const StationSchema = new mongoose.Schema<Station>({
     enum: ["CityBike Finland", "test"],
     required: [true, "Please provide Operaattor"],
   },
-  City:{
-    type:String,
-    enum:["Helsinki","Espoo"]
+  Kaupunki: {
+    type: String,
+    enum: ["Helsinki", "Espoo"],
   },
   Kapasiteet: {
     type: String,

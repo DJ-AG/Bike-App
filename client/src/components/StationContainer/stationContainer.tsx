@@ -11,7 +11,6 @@ const StationContainer = () => {
     page,
     totalStations,
     search,
-    searchType,
     numOfPages,
     showAlert,
     pageLimit,
@@ -20,7 +19,7 @@ const StationContainer = () => {
   useEffect(() => {
     getStations();
     // eslint-disable-next-line
-  }, [page, search, searchType]);
+  }, [page, search]);
   if (isLoading) {
     return <Loading center />;
   }
@@ -35,14 +34,13 @@ const StationContainer = () => {
   const indexOfLastStation = page * pageLimit;
   const indexOfFirstStation = indexOfLastStation - pageLimit;
   const Render = stations
-    .filter((find: any) =>
-      find.Name
-        ? find.Name.toLowerCase().includes(search.toLowerCase())
-        : find.Adress.toLowerCase().includes(search.toLowerCase())
+    .filter(
+      (find: any) =>
+        find.Name.toLowerCase().includes(search.toLowerCase()) ||
+        find.Osoite.toLowerCase().includes(search.toLowerCase())
     )
     .slice(indexOfFirstStation, indexOfLastStation)
     .map((station: any) => {
-      console.log(station._id);
       return <Station key={station._id} {...station} />;
     });
 
