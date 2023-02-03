@@ -21,3 +21,14 @@ Navigate to client/src/utils/ and open GoogleMapsUtils.ts<br>
 add your Google maps api key here<br>
 ![add googleapi](/media/googleApiKey.png)<br>
 Remmember to remove the Angle Bracket!
+
+## Client (Frontend) && Server (Backend)
+The frontend is built with [React](https://reactjs.org/) + [Typescript](https://www.typescriptlang.org/) while the backend uses only Typescript that is compiled into JavaScirpt after the initail setup-production is runned. The project was design with mobile and desktop support in mind <br>
+
+## MongoDB
+MongoDB was used in project for storing data. Data that was shared by dev academy had to be checked and cleand from duplicates, i personaly used [MongoDB extension](https://code.visualstudio.com/docs/azure/mongodb) on Visual Studio Code with aggregate querry you can find the file with the data in the root "db.stations.aggregate"
+
+## Reflection
+There's a lot of improvements to be made still like my typescript skill's. I will continue to maintain this project and improving it by adding new aspects to it like profiles, payments and so on.. in time.
+
+Station data is owned by [HSL](https://www.avoindata.fi/data/en_GB/dataset/hsl-n-kaupunkipyoraasemat/resource/a23eef3a-cc40-4608-8aa2-c730d17e8902?inner_span=True).<br> 
