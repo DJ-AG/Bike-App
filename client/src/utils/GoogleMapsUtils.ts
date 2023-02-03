@@ -1,7 +1,6 @@
-import { googlekey } from "../keys/googlekey";
 
 export const loadMapApi = () => {
-  const mapsUrl = `https://maps.googleapis.com/maps/api/js?key=${googlekey}`;
+  const mapsUrl = `https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_MAP_KEY}`;
   const scripts = document.getElementsByTagName("script");
 
   for (let i = 0; i < scripts.length; i++) {
