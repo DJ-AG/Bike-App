@@ -30,6 +30,7 @@ const getAllStations = (req, res) => __awaiter(void 0, void 0, void 0, function*
     const stations = yield result;
     const totalStations = yield Station_1.default.countDocuments();
     const numOfPages = Math.ceil(totalStations / 10);
+    console.log(stations);
     res.status(http_status_codes_1.StatusCodes.OK).json({ stations, totalStations, numOfPages });
 });
 exports.getAllStations = getAllStations;

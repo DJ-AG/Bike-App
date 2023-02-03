@@ -17,6 +17,7 @@ export const getAllStations = async (req: any, res: any) => {
   const totalStations = await Station.countDocuments();
 
   const numOfPages = Math.ceil(totalStations / 10);
+  console.log(stations)
   res.status(StatusCodes.OK).json({ stations, totalStations, numOfPages });
 };
 
