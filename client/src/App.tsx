@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import { Error, Register, UnderConstruction } from "./pages/index";
-import { AddStation, AllStations, About } from "./pages/Dashboard/index";
+import { AddStation, AllStations, About } from "./pages/dashboard/index";
 import { Provider } from "react-redux";
 import { store } from "./Redux/store";
 
