@@ -11,8 +11,8 @@ Tags: `MongoDB`, `Express`, `React` `Node`, `Typescript`
 1. Run `git clone https://github.com/vicontiveros00/Helsinki-City-Bike-App.git` in your terminal to clone the repository. (Alternatively, you could download the repo instead.)
 2. Navigate to cloned folder and run `npm run setup-production` to compile typescript files and install the necessary dependencies .
 3. Run `npm start` to get a local development build running or `node index` to run app in local production setup
-4. Create .env in root (media/env.png)<br>
-add your own mongodb key here (media/mongoUrl.png)
-Navigate to client/src/utils/ and open GoogleMapsUtils.ts (media/pathToGoogle.png)
-add your Google maps api key here (media/googleApiKey.png)
+4. Create .env in root [create env](media/env.png)<br>
+add your own mongodb key here [add mongourl](media/mongoUrl.png)
+Navigate to client/src/utils/ and open GoogleMapsUtils.ts [findGoogleUtils](media/pathToGoogle.png)
+add your Google maps api key here [add googleapi](media/googleApiKey.png)
 Remmember to remove the Angle Bracket!
