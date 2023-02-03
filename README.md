@@ -6,7 +6,7 @@ This project was created as a pre-assignment for [Solita's Dev Academy 2023](htt
 On this web app you can search through all city bike stations in the Helsinki and Espoo areas, and view information about each station.<br>
 Tags: `MongoDB`, `Express`, `React` `Node`, `Typescript`
 
-## Running a development build locally
+## Run The App Locally
 
 1. Run `git clone https://github.com/DJ-AG/Bike-App.git` in your terminal to clone the repository. (Alternatively, you could download the repo instead.)
 2. Navigate to cloned folder and run `npm run setup-production` to compile typescript files and install the necessary dependencies .
