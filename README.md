@@ -8,7 +8,7 @@ Tags: `MongoDB`, `Express`, `React` `Node`, `Typescript`
 
 ## Running a development build locally
 
-1. Run `git clone https://github.com/vicontiveros00/Helsinki-City-Bike-App.git` in your terminal to clone the repository. (Alternatively, you could download the repo instead.)
+1. Run `git clone https://github.com/DJ-AG/Bike-App.git` in your terminal to clone the repository. (Alternatively, you could download the repo instead.)
 2. Navigate to cloned folder and run `npm run setup-production` to compile typescript files and install the necessary dependencies .
 3. Run `npm start` to get a local development build running or `node index` to run app in local production setup
 4. Create .env in root <br>
