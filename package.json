@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "setup-production": "npm install && npm run install-client && npm run build-client && tsc",
+    "setup-production": "npm install && tsc && npm run install-client && npm run build-client",
     "install-client": "cd client && npm install",
     "build-client": "cd client && npm run build",
     "server:build": "tsc -w",
@@ -37,6 +37,7 @@
     "moment": "^2.29.4",
     "mongoose": "^6.8.2",
     "morgan": "^1.10.0",
+    "typescript": "^4.9.5",
     "validator": "^13.7.0"
   },
   "devDependencies": {
