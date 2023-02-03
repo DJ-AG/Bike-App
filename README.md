@@ -29,6 +29,6 @@ The frontend is built with [React](https://reactjs.org/) + [Typescript](https://
 MongoDB was used in project for storing data. Data that was shared by dev academy had to be checked and cleand from duplicates, i personaly used [MongoDB extension](https://code.visualstudio.com/docs/azure/mongodb) on Visual Studio Code with aggregate querry you can find the file with the data in the root "db.stations.aggregate"
 
 ## Reflection
-There's a lot of improvements to be made still like my typescript skill's. I will continue to maintain this project and improving it by adding new aspects to it like profiles, payments and so on.. in time.
+There's a lot of improvements to be made but still i manage pretty well for my first time with typescript fullstack project. I will continue to maintain this project and improving it by adding new aspects to it like profiles, payments and so on.. in time.
 
 Station data is owned by [HSL](https://www.avoindata.fi/data/en_GB/dataset/hsl-n-kaupunkipyoraasemat/resource/a23eef3a-cc40-4608-8aa2-c730d17e8902?inner_span=True).<br> 
