@@ -1,17 +1,19 @@
 
 export const loadMapApi = () => {
-  const mapsUrl = `https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_MAP_KEY}`;
-  const scripts = document.getElementsByTagName("script");
-
+  const mapsURL = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS}&libraries=geometry,places&language=no&region=NO&v=quarterly&callback=Function.prototype`;
+  const scripts = document.getElementsByTagName('script');
+  // Go through existing script tags, and return google maps api tag when found.
   for (let i = 0; i < scripts.length; i++) {
-    if (scripts[i].src.indexOf(mapsUrl) === 0) {
-      return scripts[i];
-    }
+      if (scripts[i].src.indexOf(mapsURL) === 0) {
+          return scripts[i];
+      }
   }
-  const googleMapScript = document.createElement("script");
-  googleMapScript.src = mapsUrl;
+
+  const googleMapScript = document.createElement('script');
+  googleMapScript.src = mapsURL;
   googleMapScript.async = true;
   googleMapScript.defer = true;
   window.document.body.appendChild(googleMapScript);
+
   return googleMapScript;
 };

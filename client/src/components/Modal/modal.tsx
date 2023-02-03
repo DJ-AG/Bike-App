@@ -10,11 +10,6 @@ const Modal = () => {
   const { ModalAdress, X, Y } = useTypedSelector((state) => state.stations);
   const { closeModal } = useAction();
   const Location = { X, Y };
-  useEffect(() => {
-    const googleMapScript = loadMapApi();
-    googleMapScript.addEventListener("load", function () {});
-    googleMapScript.setAttribute('async','defer')
-  },);
   const closeModalHandler = () => {
     closeModal();
   };

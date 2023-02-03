@@ -3,6 +3,7 @@ import { Station, Loading, Alert, PageBtnContainer } from "../index";
 import Wrapper from "./stationContainer_wrapper";
 import { useTypedSelector } from "../../hooks/useTypeSelector";
 import { useAction } from "../../hooks/useActions";
+import { loadMapApi } from "../../utils/GoogleMapsUtils";
 
 const StationContainer = () => {
   const {
@@ -20,6 +21,11 @@ const StationContainer = () => {
     getStations();
     // eslint-disable-next-line
   }, [page, search]);
+  useEffect(() => {
+    const googleMapScript = loadMapApi();
+    googleMapScript.addEventListener('load', function () {
+    });
+}, []);
   if (isLoading) {
     return <Loading center />;
   }

@@ -11,7 +11,7 @@ const Wrapper = styled.section`
   h2 {
     background: transparent;
     border-color: transparent;
-    width: 200px;
+    width: 100%;
     height: 40px;
     font-weight: 700;
     font-size: 1.25rem;
