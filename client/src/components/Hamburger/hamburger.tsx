@@ -7,7 +7,7 @@ import { useTypedSelector } from "../../hooks/useTypeSelector";
 
 const SmallSidebar = () => {
   const { toggleSidebar } = useAction();
-  const { showSidebar } = useTypedSelector((state) => state.users);
+  const { showSidebar } = useTypedSelector((state) => state.stations);
   return (
     <Wrapper>
       <div

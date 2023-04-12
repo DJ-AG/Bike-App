@@ -2,20 +2,19 @@ import { FormRow } from "../index";
 import { useState, useMemo } from "react";
 import { useTypedSelector } from "../../hooks/useTypeSelector";
 import { useAction } from "../../hooks/useActions";
-import Wrapper from './searchContainer_wrapper'
+import Wrapper from "./searchContainer_wrapper";
 const SearchContainer = () => {
   const [localSearch, setLocalSearch] = useState("");
-  const {
-    isLoading} = useTypedSelector((state) => state.stations);
-  const { handleChange,clearFilters } = useAction();
-  const handleSubmit = (e:any) => {
+  const { isLoading } = useTypedSelector((state) => state.stations);
+  const { handleChange, clearFilters } = useAction();
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     setLocalSearch("");
     clearFilters();
   };
   const debounce = () => {
-    let timeoutID:any;
-    return (e:any) => {
+    let timeoutID: any;
+    return (e: any) => {
       setLocalSearch(e.target.value);
       clearTimeout(timeoutID);
       timeoutID = setTimeout(() => {
@@ -29,7 +28,7 @@ const SearchContainer = () => {
       <form className="form">
         <div className="form-center">
           <FormRow
-          labelText=""
+            labelText=""
             type="text"
             name="search"
             value={localSearch}

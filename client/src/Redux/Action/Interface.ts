@@ -6,39 +6,26 @@ export interface ClearAlert {
   type: "CLEAR_ALERT";
 }
 
-export interface setupUserBegin {
-  type: "SETUP_USER_BEGIN";
-}
-export interface setupUserSuccess {
-  payload: any;
-  type: "SETUP_USER_SUCCESS";
-  action?: {};
-}
-export interface SetupUserError {
-  payload: any;
-  type: "SETUP_USER_ERROR";
-  action?: string;
-}
-export interface loginUserBegin {
-  type: "LOGIN_USER_BEGIN";
-}
-export interface loginUserSuccess {
-  payload: any;
-  type: "LOGIN_USER_SUCCESS";
-  action?: {};
-}
-export interface loginUserError {
-  payload: any;
-  type: "LOGIN_USER_ERROR";
-  action?: string;
-}
-
-export interface logout {
-  type: "LOGOUT_USER";
-}
 export interface toggleSidebar {
   type: "TOGGLE_SIDEBAR";
 }
+
+export interface getJorneysBegin {
+  type: "GET_JORNEY_BEGIN";
+}
+
+export interface getJorneySuccess {
+  type: "GET_JORNEY_SUCCESS";
+  payload: any;
+}
+
+export interface createJorneyBegin {
+  type: "CREATE_JORNEY_BEGINE";
+}
+export interface createJorneySuccess {
+  type: "CREATE_JORNEY_SUCCESS";
+}
+
 export interface getStationsBegin {
   type: "GET_STATION_BEGIN";
 }
@@ -92,13 +79,6 @@ export interface closeModal {
 export type Action =
   | DisplayAlert
   | ClearAlert
-  | setupUserBegin
-  | setupUserSuccess
-  | SetupUserError
-  | loginUserBegin
-  | loginUserSuccess
-  | loginUserError
-  | logout
   | toggleSidebar
   | getStationsBegin
   | getStationsSuccess
@@ -113,4 +93,8 @@ export type Action =
   | createStationSuccess
   | createStationError
   | handleModal
+  | getJorneysBegin
+  | getJorneySuccess
+  | createJorneyBegin
+  | createJorneySuccess
   | closeModal;

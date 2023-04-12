@@ -5,7 +5,21 @@ import { Modal, StationInfo } from "../index";
 import { useAction } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypeSelector";
 
-const Station = ({
+interface StationProps {
+  Kaupunki: string;
+  _id: any;
+  City: string;
+  Adress: string;
+  x: string;
+  y: string;
+  Name: string;
+  isLoading: boolean;
+  Operaattor: string;
+  Osoite: string;
+  Kapasiteet: string;
+}
+
+const Station: React.FC<StationProps> = ({
   _id,
   Name,
   Adress,
@@ -15,18 +29,6 @@ const Station = ({
   y,
   Operaattor,
   Kapasiteet,
-}: {
-  Kaupunki: any;
-  _id: any;
-  City: string;
-  Adress: string;
-  x: string;
-  y: string;
-  Name: string;
-  isLoading: any;
-  Operaattor: any;
-  Osoite: string;
-  Kapasiteet: string;
 }) => {
   const { deleteStation, handleModal } = useAction();
   const { ModalToggle } = useTypedSelector((state) => state.stations);

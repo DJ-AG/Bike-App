@@ -22,68 +22,9 @@ export const displayAlert = () => {
   };
 };
 
-const addUserToLocalStorage = (user: string, token: string) => {
-  localStorage.setItem("user", JSON.stringify(user));
-  localStorage.setItem("token", token);
-};
-
-const removeUserFromLocalStoorage = () => {
-  localStorage.removeItem("token");
-  localStorage.removeItem("user");
-};
-
-export const logoutUser = () => {
-  return async (dispatch: Dispatch<Action>) => {
-    await authFetch.get("/auth/logout");
-    dispatch({ type: ActionType.LOGOUT_USER });
-    removeUserFromLocalStoorage();
-  };
-};
-
-export const loginUser = (currentUser: any) => {
-  return async (dispatch: Dispatch<Action>) => {
-    dispatch({ type: ActionType.LOGIN_USER_BEGIN });
-    try {
-      const { data } = await axios.post("/api/v1/auth/login", currentUser);
-      const { user, token } = data;
-      dispatch({
-        type: ActionType.LOGIN_USER_SUCCESS,
-        payload: { user, token },
-      });
-      addUserToLocalStorage(user, token);
-    } catch (err: any) {
-      dispatch({
-        type: ActionType.LOGIN_USER_ERROR,
-        payload: { msg: err.response.data.msg },
-      });
-    }
-    clearAlert();
-  };
-};
-
-export const registerUser = (currentUser: any) => {
-  return async (dispatch: Dispatch<Action>) => {
-    dispatch({ type: ActionType.SETUP_USER_BEGIN });
-    try {
-      const { data } = await axios.post("/api/v1/auth/register", currentUser);
-      const { user, token } = data;
-      dispatch({
-        type: ActionType.SETUP_USER_SUCCESS,
-        payload: { user, token },
-      });
-      addUserToLocalStorage(user, token);
-    } catch (err: any) {
-      dispatch({
-        type: ActionType.SETUP_USER_ERROR,
-        payload: { msg: err.response.data.msg },
-      });
-    }
-    clearAlert();
-  };
-};
-
 export const toggleSidebar = () => {
   return async (dispatch: Dispatch<Action>) => {
+    console.log("togglesidebar active");
     dispatch({ type: ActionType.TOGGLE_SIDEBAR });
   };
 };
@@ -124,6 +65,46 @@ export const createStation = (
   };
 };
 
+export const createJorney = (
+  Departure: string,
+  Return: string,
+  Departure_station_id: string,
+  Departure_station_name: string,
+  Return_station_id: string,
+  Return_station_name: string,
+  Covered_distance_m: string,
+  Duration: string
+) => {
+  return async (dispatch: Dispatch<Action>) => {
+    const data = {
+      Departure,
+      Return,
+      Departure_station_id,
+      Departure_station_name,
+      Return_station_id,
+      Return_station_name,
+      Covered_distance_m,
+      Duration,
+    };
+    console.log("phase 1")
+    dispatch({ type: ActionType.CREATE_JORNEY_BEGINE });
+    try {
+      console.log("phase 2")
+      await authFetch.post("/jorney/create", data);
+      dispatch({ type: ActionType.CREATE_JORNEY_SUCCESS });
+      dispatch({ type: ActionType.CLEAR_VALUES });
+    } catch (error: any) {
+      if (error.response.status === 401) return;
+      dispatch({
+        type: ActionType.CREATE_STATION_ERROR,
+        payload: { msg: error.response.data.msg },
+      });
+    }
+    getStations();
+    clearAlert();
+  };
+};
+
 export const getStations = () => {
   let url = "/station/getstations";
   return async (dispatch: Dispatch<Action>) => {
@@ -137,7 +118,25 @@ export const getStations = () => {
       });
     } catch (err: any) {
       console.log(err.response);
-      logoutUser();
+    }
+    clearAlert();
+  };
+};
+
+export const getJorneys = () => {
+  let url = "/jorney/getjorneys";
+  return async (dispatch: Dispatch<Action>) => {
+    dispatch({ type: ActionType.GET_JORNEY_BEGIN });
+    try {
+      const { data } = await authFetch(url);
+      const { jorneys, totalJorneys, numOfPages } = data;
+      console.log(data);
+      dispatch({
+        type: ActionType.GET_JORNEY_SUCCESS,
+        payload: { jorneys, totalJorneys, numOfPages },
+      });
+    } catch (err: any) {
+      console.log(err.response);
     }
     clearAlert();
   };

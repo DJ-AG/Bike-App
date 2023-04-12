@@ -9,9 +9,9 @@ import Loading from "./Loading/loading";
 import Hamburger from "./Hamburger/hamburger";
 import FormRowSelect from "./FormRowSelect/formRowSelect";
 import FormRow from "./FormRow/FormRow";
-import Alert from "./Alert/Alert";
 import Modal from "./Modal/modal";
 import Map from './Map/map'
+import Alert from "./Alert/Alert";
 
 export {
   Modal,
@@ -26,6 +26,6 @@ export {
   Hamburger,
   FormRow,
   FormRowSelect,
-  Alert,
-  Map
+  Map,
+  Alert
 };

@@ -1,9 +1,8 @@
 import { combineReducers } from "redux";
-import userReducer from "./userReducer";
-import stationReducer from './stationReducer'
+import reducer from './reducer'
 
 const rootReducer = combineReducers({
-  stations: stationReducer,users: userReducer,
+  stations: reducer
 });
 
 export default rootReducer;

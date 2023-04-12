@@ -2,13 +2,16 @@ import links from "./Utils/Links";
 import { NavLink } from "react-router-dom";
 import Wrapper from "./NavLinks_styles";
 
-const NavLinks = ({toggleSidebar}:any) => {
+interface NavLinksProps {
+  toggleSidebar: any;
+}
 
+const NavLinks: React.FC<NavLinksProps> = ({ toggleSidebar }) => {
   return (
     <Wrapper>
       <div className="nav-links">
         {links.map((link) => {
-          const { text, path, id, icon,} = link;
+          const { text, path, id, icon } = link;
           return (
             <NavLink
               to={path}

@@ -1,9 +1,7 @@
-import {useEffect } from "react";
 import { ImCross } from "react-icons/im";
 import { useAction } from "../../hooks/useActions";
 
 import { useTypedSelector } from "../../hooks/useTypeSelector";
-import { loadMapApi } from "../../utils/GoogleMapsUtils";
 import { Map } from "../index";
 import Wrapper from "./modal_wrapper";
 const Modal = () => {

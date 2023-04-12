@@ -1,15 +1,17 @@
-const FormRow = ({
-  type,
-  name,
-  value,
-  handleChange,
-  labelText,
-}: {
+interface FormRowProps {
   type: any;
   name: string;
   value: string;
   handleChange(e: any): any;
   labelText: string;
+}
+
+const FormRow: React.FC<FormRowProps> = ({
+  type,
+  name,
+  value,
+  handleChange,
+  labelText,
 }) => {
   return (
     <div className="form-row">

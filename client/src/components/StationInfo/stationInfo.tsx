@@ -1,6 +1,11 @@
 import Wrapper from "./stationInfo_wrapper";
 
-const StationInfo = ({ icon, text }: { icon: any; text: string }) => {
+interface StationInfoProps {
+  icon: any;
+  text: string;
+}
+
+const StationInfo: React.FC<StationInfoProps> = ({ icon, text }) => {
   return (
     <Wrapper>
       <span className="icon">{icon}</span>

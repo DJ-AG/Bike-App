@@ -23,9 +23,8 @@ const StationContainer = () => {
   }, [page, search]);
   useEffect(() => {
     const googleMapScript = loadMapApi();
-    googleMapScript.addEventListener('load', function () {
-    });
-}, []);
+    googleMapScript.addEventListener("load", function () {});
+  }, []);
   if (isLoading) {
     return <Loading center />;
   }

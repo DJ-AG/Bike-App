@@ -1,10 +1,11 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import { createRoot } from "react-dom/client";
 import "normalize.css";
 import "./css/index.css";
 import App from "./App";
-import dotenv from 'dotenv'
-const root = ReactDOM.createRoot(document.getElementById("root")!);
+const HTMLElement = document.querySelector("#root") as HTMLDivElement;
+
+const root = createRoot(HTMLElement);
 
 root.render(
   <React.StrictMode>

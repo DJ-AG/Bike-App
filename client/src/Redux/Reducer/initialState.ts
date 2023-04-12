@@ -1,5 +1,41 @@
-const token = localStorage.getItem("token");
-export const stationState = {
+export interface initialStateProps {
+  Nimi: string;
+  Name: string;
+  Osoite: string;
+  Kaupunki: string;
+  KaupunkiTypeOption: string[];
+  OperaattorTypeOptions: string[];
+  Operaattor: string;
+  Kapasiteet: string;
+  x: string;
+  y: string;
+  X: string;
+  Y: string;
+  stations: string[];
+  ModalToggle: boolean;
+  ModalAdress: string;
+  scriptLoaded: boolean;
+  search: string;
+  totalStations: number;
+  numOfPages: number;
+  page: number;
+  pageLimit: number;
+  isLoading: boolean;
+  showAlert: boolean;
+  alertText: string;
+  alertType: string;
+  showSidebar: boolean;
+  Departure: string,
+  Return: string,
+  Departure_station_id: string,
+  Departure_station_name: string,
+  Return_station_id: string,
+  Return_station_name: string,
+  Covered_distance_m: string,
+  Duration: string
+}
+
+export const initialState: initialStateProps = {
   Nimi: "",
   Name: "",
   Osoite: "",
@@ -13,22 +49,15 @@ export const stationState = {
   stations: [],
 
   /*Modal Data */
+
   ModalToggle: false,
   ModalAdress: "",
-
   /*Map Data */
   X: "",
   Y: "",
+
   scriptLoaded: false,
-
   search: "",
-
-  /*Future implementation */
-  /*
-  searchType: "all",
-  sort: "latest",
-  */
-
   totalStations: 0,
   numOfPages: 1,
   page: 1,
@@ -39,15 +68,16 @@ export const stationState = {
   alertText: "",
   alertType: "",
   pageLimit: 10,
-};
-export const userState = {
-  /* User Settings for future implementations */
-  userLoading: true,
-  isLoading: false,
-  showAlert: false,
-  alertText: "",
-  alertType: "",
-  user: null,
-  token: token,
   showSidebar: false,
+
+  /*Jorney Settings */
+  Departure: "",
+  Return: "",
+  Departure_station_id: "",
+  Departure_station_name: "",
+  Return_station_id: "",
+  Return_station_name: "",
+  Covered_distance_m: "",
+  Duration: ""
 };
+
