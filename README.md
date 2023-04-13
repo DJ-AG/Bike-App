@@ -1,4 +1,5 @@
 # [BIKE APP](https://dev-academy-assignment.onrender.com/)
+Project is live on https://dev-academy-assignment.onrender.com/
 
 Developed by Alexei Golovanov
 
