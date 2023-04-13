@@ -1,9 +1,10 @@
-import { FormRow, FormRowSelect, Alert } from "../../components/index";
+import { useEffect } from "react";
+import { FormRow, Alert } from "../../components/index";
 import { useAction } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypeSelector";
 import Wrapper from "./addStation_wrapper";
 
-const AddStation = () => {
+const AddJorney = () => {
   const {
     Departure,
     Return,
@@ -14,25 +15,16 @@ const AddStation = () => {
     Covered_distance_m,
     Duration,
     showAlert,
-    isLoading
+    isLoading,
   } = useTypedSelector((state) => state.stations);
-  const { displayAlert, clearValues, handleChange, createJorney } = useAction();
-
+  const { clearValues, handleChange, createJorney } = useAction();
+  const { getJorneys } = useAction();
+  useEffect(() => {
+    getJorneys();
+    // eslint-disable-next-line
+  }, []);
   const handleSubmit = (e: any) => {
-    e.preventDefault();
-    if (
-      !Departure ||
-      !Return ||
-      !Departure_station_id ||
-      !Departure_station_name ||
-      !Return_station_id ||
-      !Return_station_name ||
-      !Covered_distance_m ||
-      !Duration
-    ) {
-      displayAlert();
-      return;
-    }
+
     createJorney(
       Departure,
       Return,
@@ -54,10 +46,9 @@ const AddStation = () => {
   return (
     <Wrapper>
       <form className="form">
-        <h3>add station</h3>
+        <h3>add jorney</h3>
         {showAlert && <Alert />}
         <div className="form-center">
-          {/* Name */}
           <FormRow
             type="text"
             labelText="Departure"
@@ -65,7 +56,7 @@ const AddStation = () => {
             value={Departure}
             handleChange={handleJorneyInput}
           />
-          {/* Adress */}
+
           <FormRow
             type="text"
             labelText="Return"
@@ -73,38 +64,13 @@ const AddStation = () => {
             value={Return}
             handleChange={handleJorneyInput}
           />
-          {/* Capacity */}
-          <FormRow
-            type="text"
-            name="Departure_station_id"
-            labelText="Departure_station_id"
-            value={Departure_station_id}
-            handleChange={handleJorneyInput}
-          />
-          {/* Coordinates */}
           <FormRow
             type="text"
             name="Departure_station_name"
-            labelText="Departure_station_name"
+            labelText="Departure station name"
             value={Departure_station_name}
             handleChange={handleJorneyInput}
           />
-          <FormRow
-            type="text"
-            name="Return_station_id"
-            labelText="Return_station_id"
-            value={Return_station_id}
-            handleChange={handleJorneyInput}
-          />
-          {/* City */}
-          <FormRow
-            type="text"
-            labelText="Covered_distance_m"
-            name="Covered_distance_m"
-            value={Covered_distance_m}
-            handleChange={handleJorneyInput}
-          />
-          {/* Operaattor */}
           <FormRow
             type="text"
             labelText="Duration"
@@ -112,7 +78,6 @@ const AddStation = () => {
             value={Duration}
             handleChange={handleJorneyInput}
           />
-          {/* btn container */}
           <div className="btn-container">
             <button
               type="submit"
@@ -137,4 +102,4 @@ const AddStation = () => {
     </Wrapper>
   );
 };
-export default AddStation;
+export default AddJorney;

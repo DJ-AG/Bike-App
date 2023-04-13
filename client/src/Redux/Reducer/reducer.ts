@@ -21,7 +21,6 @@ const reducer = produce(
           alertText: "",
         };
       case ActionType.GET_JORNEY_BEGIN:
-        console.log("GET_JORNEY_BEGIN");
         return {
           ...state,
           isLoading: true,
@@ -37,14 +36,14 @@ const reducer = produce(
         };
       case ActionType.CREATE_JORNEY_BEGINE:
         return { ...state, isLoading: true };
-        case ActionType.CREATE_JORNEY_SUCCESS:
-          return {
-            ...state,
-            isLoading: false,
-            showAlert: true,
-            alertType: "success",
-            alertText: "New Station Created!",
-          };
+      case ActionType.CREATE_JORNEY_SUCCESS:
+        return {
+          ...state,
+          isLoading: false,
+          showAlert: true,
+          alertType: "success",
+          alertText: "New Jorney Created!",
+        };
       case ActionType.GET_STATION_BEGIN:
         return {
           ...state,
@@ -125,7 +124,6 @@ const reducer = produce(
           ModalAdress: "",
         };
       case ActionType.TOGGLE_SIDEBAR:
-        console.log("toggle reduces");
         return {
           ...state,
           showSidebar: !state.showSidebar,

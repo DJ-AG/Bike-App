@@ -16,6 +16,7 @@ const StationContainer = () => {
     showAlert,
     pageLimit,
   } = useTypedSelector((state) => state.stations);
+
   const { getStations } = useAction();
   useEffect(() => {
     getStations();
@@ -56,7 +57,7 @@ const StationContainer = () => {
         {totalStations} station{stations.length > 1 && "s"} found
       </h5>
       <div className="stations">{Render}</div>
-      {numOfPages > 1 && <PageBtnContainer />}
+      {numOfPages > 1 && <PageBtnContainer value={totalStations} />}
     </Wrapper>
   );
 };

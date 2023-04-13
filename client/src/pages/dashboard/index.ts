@@ -1,6 +1,6 @@
 import AddStation from "./addStation";
 import AllStations from "./allStations";
 import About from "./about";
-import Jorney from "./jorneys";
+import AllJorney from "./allJorneys";
 
-export { AddStation, AllStations, About, Jorney };
+export { AddStation, AllStations, About, AllJorney };

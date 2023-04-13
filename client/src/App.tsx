@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import { Error, UnderConstruction } from "./pages/index";
-import { AddStation, AllStations, About, Jorney } from "./pages/dashboard/index";
+import { AddStation, AllStations, About, AllJorney } from "./pages/dashboard/index";
 import { Provider } from "react-redux";
 import { store } from "./Redux/store";
 
@@ -16,7 +16,7 @@ const App = () => {
           <Route path="/create" element={<AddStation />} />
           <Route path="/" index element={<About />} />
           <Route path="/getstations" element={<AllStations />} />
-          <Route path="/jorney" element={<Jorney />} />
+          <Route path="/jorney" element={<AllJorney />} />
           <Route path="*" element={<Error />} />
         </Routes>
       </BrowserRouter>

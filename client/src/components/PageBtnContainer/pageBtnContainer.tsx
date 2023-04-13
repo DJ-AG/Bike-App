@@ -3,13 +3,17 @@ import { useAction } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypeSelector";
 import Wrapper from "./pageBtnContainer_wrapper";
 
-const PageBtnContainer = () => {
+interface PageBtnContainerProps {
+  value: any;
+}
+
+const PageBtnContainer: React.FC<PageBtnContainerProps> = ({value}) => {
   const { changePage } = useAction();
-  const { numOfPages, page, totalStations, pageLimit } = useTypedSelector(
+  const { numOfPages, page, pageLimit } = useTypedSelector(
     (state) => state.stations
   );
   const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(totalStations / pageLimit); i++) {
+  for (let i = 1; i <= Math.ceil(value / pageLimit); i++) {
     pageNumbers.push(i);
   }
   const nextPage = () => {
@@ -34,7 +38,7 @@ const PageBtnContainer = () => {
       </button>
       <div>
         <h2>
-          {page} of {Math.ceil(totalStations / 10)}
+          {page} of {Math.ceil(value / 10)}
         </h2>
       </div>
       <button className="next-btn" onClick={nextPage}>

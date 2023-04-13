@@ -12,6 +12,7 @@ import FormRow from "./FormRow/FormRow";
 import Modal from "./Modal/modal";
 import Map from './Map/map'
 import Alert from "./Alert/Alert";
+import JorneyContainer from "./JorneyContainer/jorneyContainer";
 
 export {
   Modal,
@@ -27,5 +28,6 @@ export {
   FormRow,
   FormRowSelect,
   Map,
-  Alert
+  Alert,
+  JorneyContainer
 };

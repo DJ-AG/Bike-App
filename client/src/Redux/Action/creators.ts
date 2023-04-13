@@ -86,13 +86,12 @@ export const createJorney = (
       Covered_distance_m,
       Duration,
     };
-    console.log("phase 1")
     dispatch({ type: ActionType.CREATE_JORNEY_BEGINE });
     try {
-      console.log("phase 2")
       await authFetch.post("/jorney/create", data);
       dispatch({ type: ActionType.CREATE_JORNEY_SUCCESS });
       dispatch({ type: ActionType.CLEAR_VALUES });
+      getJorneys();
     } catch (error: any) {
       if (error.response.status === 401) return;
       dispatch({
@@ -100,7 +99,6 @@ export const createJorney = (
         payload: { msg: error.response.data.msg },
       });
     }
-    getStations();
     clearAlert();
   };
 };
@@ -130,7 +128,6 @@ export const getJorneys = () => {
     try {
       const { data } = await authFetch(url);
       const { jorneys, totalJorneys, numOfPages } = data;
-      console.log(data);
       dispatch({
         type: ActionType.GET_JORNEY_SUCCESS,
         payload: { jorneys, totalJorneys, numOfPages },

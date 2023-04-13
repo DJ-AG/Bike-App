@@ -33,6 +33,10 @@ export interface initialStateProps {
   Return_station_name: string,
   Covered_distance_m: string,
   Duration: string
+  jorneys:string[]
+  totalJorneys:number,
+
+
 }
 
 export const initialState: initialStateProps = {
@@ -47,7 +51,6 @@ export const initialState: initialStateProps = {
   x: "",
   y: "",
   stations: [],
-
   /*Modal Data */
 
   ModalToggle: false,
@@ -71,6 +74,8 @@ export const initialState: initialStateProps = {
   showSidebar: false,
 
   /*Jorney Settings */
+  jorneys:[],
+  totalJorneys:0,
   Departure: "",
   Return: "",
   Departure_station_id: "",
