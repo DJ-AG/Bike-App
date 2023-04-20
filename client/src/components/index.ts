@@ -1,4 +1,5 @@
 import StationInfo from "./StationInfo/stationInfo";
+import JorneyInfo from './JorneyInfo/jorneyInfo'
 import StationContainer from "./StationContainer/stationContainer";
 import Station from "./Station/station";
 import SearchContainer from "./SearchContainer/searchContainer";
@@ -13,6 +14,8 @@ import Modal from "./Modal/modal";
 import Map from './Map/map'
 import Alert from "./Alert/Alert";
 import JorneyContainer from "./JorneyContainer/jorneyContainer";
+import LongestJorney from "./LongestJorney/longestJorney";
+import Jorney from './Jorney/Jorney'
 
 export {
   Modal,
@@ -29,5 +32,8 @@ export {
   FormRowSelect,
   Map,
   Alert,
-  JorneyContainer
+  JorneyContainer,
+  LongestJorney,
+  JorneyInfo,
+  Jorney
 };
