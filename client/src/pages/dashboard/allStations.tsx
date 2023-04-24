@@ -3,7 +3,7 @@ import { StationContainer, SearchContainer } from "../../components/index";
 const allStations = () => {
   return (
     <div>
-      <SearchContainer />
+      <SearchContainer page="station" />
       <StationContainer />
     </div>
   );

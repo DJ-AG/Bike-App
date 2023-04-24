@@ -35,6 +35,8 @@ export interface initialStateProps {
   Duration: string
   jorneys:string[]
   totalJorneys:number,
+  sort: string,
+  sortOptions: string[],
 
 
 }
@@ -83,6 +85,8 @@ export const initialState: initialStateProps = {
   Return_station_id: "",
   Return_station_name: "",
   Covered_distance_m: "",
-  Duration: ""
+  Duration: "",
+  sort: 'Shortest Duration',
+  sortOptions: ['Longes Distance', 'Shortest Distance', 'Longest Duration', 'Shortest Duration'],
 };
 

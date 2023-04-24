@@ -20,6 +20,7 @@ const JorneyContainer = () => {
     showAlert,
     totalJorneys,
     pageLimit,
+    sort
   } = useTypedSelector((state) => state.stations);
   const { getJorneys } = useAction();
 
@@ -51,9 +52,20 @@ const JorneyContainer = () => {
     distants: 0,
     from: "",
     to: "",
-    time:{},
+    time: {},
   };
+  console.log(fixedData);
+
+
   const Render = fixedData
+    .filter((find: any) =>
+      find.Departure_station_name.toLowerCase().includes(search.toLowerCase())
+    )
+    .sort(function(a: any, b: any){
+      if(sort === "Longes Distance") return b.Covered_distance_m - a.Covered_distance_m
+      if(sort === "Shortest Distance") return a.Covered_distance_m - b.Covered_distance_m
+
+    })
     .slice(indexOfFirstJorney, indexOfLastJorney)
     .map((jorney: any) => {
       if (jorney.Covered_distance_m > longesJorney.distants) {
@@ -70,7 +82,6 @@ const JorneyContainer = () => {
       <h5>
         {totalJorneys} jorney{jorneys.length > 1 && "s"} found
       </h5>
-      <LongestJorney {...longesJorney}/>
       <div className="jorneys">{Render}</div>
       {numOfPages > 1 && <PageBtnContainer value={totalJorneys} />}
     </Wrapper>
