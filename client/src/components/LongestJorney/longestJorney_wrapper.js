@@ -5,15 +5,13 @@ const Wrapper = styled.article`
   box-shadow: var(--shadow-2);
   margin-bottom:2rem;
   }
-  .info {
     h5 {
       margin-bottom: 0.25rem;
-    }
-    p {
-      margin: 0;
-      text-transform: capitalize;
+      padding: 50px;
+      text-align:center;
       color: var(--grey-400);
       letter-spacing: var(--letterSpacing);
+      text-transform: capitalize;
     }
   }
 

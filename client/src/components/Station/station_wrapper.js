@@ -40,18 +40,6 @@ const Wrapper = styled.article`
       letter-spacing: var(--letterSpacing);
     }
   }
-  .pending {
-    background: #fcefc7;
-    color: #e9b949;
-  }
-  .interview {
-    background: #e0e8f9;
-    color: #647acb;
-  }
-  .declined {
-    color: #d66a6a;
-    background: #ffeeee;
-  }
   .content {
     padding: 1rem 1.5rem;
   }
@@ -68,14 +56,6 @@ const Wrapper = styled.article`
     @media (min-width: 1120px) {
       grid-template-columns: 1fr 1fr;
     }
-  }
-  .status {
-    border-radius: var(--borderRadius);
-    text-transform: capitalize;
-    letter-spacing: var(--letterSpacing);
-    text-align: center;
-    width: 100px;
-    height: 30px;
   }
   footer {
     margin-top: 1rem;

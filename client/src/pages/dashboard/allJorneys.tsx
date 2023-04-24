@@ -1,11 +1,8 @@
-import { JorneyContainer, SearchContainer } from "../../components";
-import AddJorney from "./addJorney";
+import { JorneyContainer } from "../../components";
 
 const allStations = () => {
   return (
     <div>
-      <AddJorney/>
-      <SearchContainer/>
       <JorneyContainer/>
     </div>
   );
