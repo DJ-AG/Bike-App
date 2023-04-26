@@ -8,20 +8,22 @@ On this web app you can search through all city bike stations in the Helsinki an
 Tags: `MongoDB`, `Express`, `React` `Node`, `Typescript`
 
 ## Run The App Locally
+(This tutorial will not teach you how to create GoogleApiKey or start up MongoDB server if you want to do it there are some good videos on youtube for it sorry :( )
+
+ Lets get started
 
 1. Run `git clone https://github.com/DJ-AG/Bike-App.git` in your terminal to clone the repository. (Alternatively, you could download the repo instead.)
-2. Navigate to cloned folder and run `npm run setup-production` to compile typescript files and install the necessary dependencies .
-3. Run `npm start` to get a local development build running or `node index` to run app in local production setup
-4. Create .env in root <br>
-![create env](/media/env.png)
-add your own mongodb key here <br>
-![add mongourl](/media/mongoUrl.png)<br>
-
-Navigate to client/src/utils/ and open GoogleMapsUtils.ts<br> 
-![findGoogleUtils](/media/pathToGoogle.png)
-add your Google maps api key here<br>
-![add googleapi](/media/googleApiKey.png)<br>
-Remmember to remove the Angle Bracket!
+2. Create .env in root <br>
+![create env](/media/env.png)<br/>
+3. Add your own mongodb key here <br/>
+![add mongourl](/media/mongoUrl.png)<br/>
+4. Navigate to client/src/utils/ and open GoogleMapsUtils.ts<br> 
+![findGoogleUtils](/media/pathToGoogle.png)<br/>
+5. add your Google maps api key here <br/>
+![add googleapi](/media/googleApiKey.png)<br/>
+Remmember to remove the Angle Bracket!<br/>
+6. Navigate to cloned folder and run `npm run setup-production` to compile typescript files and install the necessary dependencies.
+7. Run `npm start` to get a local development build running or `node index` to run app in local production setup
 
 ## Front Page
 ![front page](/media/main_page.jpg)
