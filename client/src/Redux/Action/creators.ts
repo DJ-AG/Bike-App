@@ -65,44 +65,6 @@ export const createStation = (
   };
 };
 
-export const createJorney = (
-  Departure: string,
-  Return: string,
-  Departure_station_id: string,
-  Departure_station_name: string,
-  Return_station_id: string,
-  Return_station_name: string,
-  Covered_distance_m: string,
-  Duration: string
-) => {
-  return async (dispatch: Dispatch<Action>) => {
-    const data = {
-      Departure,
-      Return,
-      Departure_station_id,
-      Departure_station_name,
-      Return_station_id,
-      Return_station_name,
-      Covered_distance_m,
-      Duration,
-    };
-    dispatch({ type: ActionType.CREATE_JORNEY_BEGINE });
-    try {
-      await authFetch.post("/jorney/create", data);
-      dispatch({ type: ActionType.CREATE_JORNEY_SUCCESS });
-      dispatch({ type: ActionType.CLEAR_VALUES });
-      getJorneys();
-    } catch (error: any) {
-      if (error.response.status === 401) return;
-      dispatch({
-        type: ActionType.CREATE_STATION_ERROR,
-        payload: { msg: error.response.data.msg },
-      });
-    }
-    clearAlert();
-  };
-};
-
 export const getStations = () => {
   let url = "/station/getstations";
   return async (dispatch: Dispatch<Action>) => {
@@ -121,11 +83,14 @@ export const getStations = () => {
   };
 };
 
-export const getJorneys = () => {
-  let url = "/jorney/getjorneys";
+export const getJorneys = (page:any, sort:any, search:any) => {
   return async (dispatch: Dispatch<Action>) => {
     dispatch({ type: ActionType.GET_JORNEY_BEGIN });
     try {
+      let url = `/jorney/getjorneys?page=${page}&sort=${sort}`;
+      if (search) {
+        url = url + `&search=${search}`;
+      }
       const { data } = await authFetch(url);
       const { jorneys, totalJorneys, numOfPages } = data;
       dispatch({
@@ -139,13 +104,7 @@ export const getJorneys = () => {
   };
 };
 
-export const handleChange = ({
-  name,
-  value,
-}: {
-  name: string;
-  value: number;
-}) => {
+export const handleChange = ({ name, value }: { name: any; value: any }) => {
   return async (dispatch: Dispatch<Action>) => {
     dispatch({ type: ActionType.HANDLE_CHANGE, payload: { name, value } });
   };
@@ -168,13 +127,13 @@ export const changePage = (page: number) => {
   };
 };
 
-export const handleModal = (x: string, y: string, Adress: string) => {
+export const handleOpenModal = (x: string, y: string, Adress: string) => {
   return async (dispatch: Dispatch<Action>) => {
     dispatch({ type: ActionType.TOGGLE_MODAL, payload: { x, y, Adress } });
   };
 };
 
-export const closeModal = () => {
+export const handleCloseModal = () => {
   return async (dispatch: Dispatch<Action>) => {
     dispatch({ type: ActionType.CLOSE_MODAL });
   };

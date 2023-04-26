@@ -10,7 +10,6 @@ const StationContainer = () => {
     stations,
     isLoading,
     page,
-    totalStations,
     search,
     numOfPages,
     showAlert,
@@ -22,10 +21,12 @@ const StationContainer = () => {
     getStations();
     // eslint-disable-next-line
   }, [page, search]);
+
   useEffect(() => {
     const googleMapScript = loadMapApi();
     googleMapScript.addEventListener("load", function () {});
   }, []);
+
   if (isLoading) {
     return <Loading center />;
   }
@@ -39,12 +40,21 @@ const StationContainer = () => {
   }
   const indexOfLastStation = page * pageLimit;
   const indexOfFirstStation = indexOfLastStation - pageLimit;
+  let count = 0;
   const Render = stations
-    .filter(
-      (find: any) =>
+    .filter((find: any) => {
+      if (
         find.Name.toLowerCase().includes(search.toLowerCase()) ||
         find.Osoite.toLowerCase().includes(search.toLowerCase())
-    )
+      ) {
+        count++;
+        return (
+          find.Name.toLowerCase().includes(search.toLowerCase()) ||
+          find.Osoite.toLowerCase().includes(search.toLowerCase())
+        );
+      }
+      return null
+    })
     .slice(indexOfFirstStation, indexOfLastStation)
     .map((station: any) => {
       return <Station key={station._id} {...station} />;
@@ -54,10 +64,10 @@ const StationContainer = () => {
     <Wrapper>
       {showAlert && <Alert />}
       <h5>
-        {totalStations} station{stations.length > 1 && "s"} found
+        {count} station{stations.length > 1 && "s"} found
       </h5>
       <div className="stations">{Render}</div>
-      {numOfPages > 1 && <PageBtnContainer value={totalStations} />}
+      {numOfPages > 1 && <PageBtnContainer value={count} />}
     </Wrapper>
   );
 };

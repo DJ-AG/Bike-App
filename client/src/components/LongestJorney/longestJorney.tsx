@@ -1,4 +1,4 @@
-import TimeFixer from "../../utils/TimeImplementUtil";
+import { TimeConverter } from "../../utils/HelperUtil";
 import Wrapper from "./longestJorney_wrapper";
 
 interface LongestJorneyProps {
@@ -14,13 +14,12 @@ const LongestJorney: React.FC<LongestJorneyProps> = ({
   distants,
   time,
 }) => {
-  let duration = TimeFixer(time);
+  let duration = TimeConverter(time);
   return (
     <Wrapper>
       <div>
         <h5>
-          {" "}
-          Longest journey ever made was from {from} to {to} in {duration}{" "}
+          Longest journey ever made was from {from} to {to} in {duration}
           distance was {distants} Meters
         </h5>
       </div>

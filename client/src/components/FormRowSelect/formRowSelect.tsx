@@ -1,7 +1,7 @@
 interface FormRowSelectProps {
   labelText: string;
   name: string;
-  value: any;
+  value: string;
   handleChange: any;
   list: string[];
 }
@@ -24,7 +24,7 @@ const FormRowSelect: React.FC<FormRowSelectProps> = ({
         onChange={handleChange}
         className="form-select"
       >
-        {list.map((itemValue: any, index: number) => {
+        {list.map((itemValue: string, index: number) => {
           return (
             <option key={index} value={itemValue}>
               {itemValue}

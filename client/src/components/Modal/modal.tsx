@@ -6,10 +6,10 @@ import { Map } from "../index";
 import Wrapper from "./modal_wrapper";
 const Modal = () => {
   const { ModalAdress, X, Y } = useTypedSelector((state) => state.stations);
-  const { closeModal } = useAction();
+  const { handleCloseModal } = useAction();
   const Location = { X, Y };
   const closeModalHandler = () => {
-    closeModal();
+    handleCloseModal();
   };
   return (
     <Wrapper>

@@ -2,7 +2,7 @@ interface FormRowProps {
   type: any;
   name: string;
   value: string;
-  handleChange(e: any): any;
+  handleChange(e: React.ChangeEvent<HTMLInputElement>): any;
   labelText: string;
 }
 

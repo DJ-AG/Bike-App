@@ -8,7 +8,7 @@ const HTMLElement = document.querySelector("#root") as HTMLDivElement;
 const root = createRoot(HTMLElement);
 
 root.render(
-  <React.StrictMode>
+    <React.StrictMode>
       <App />
-  </React.StrictMode>
+    </React.StrictMode>
 );

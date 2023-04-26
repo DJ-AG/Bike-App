@@ -76,6 +76,15 @@ export interface closeModal {
   type: "CLOSE_MODAL";
 }
 
+export interface handleSorting {
+  type: "HANDLE_SORT";
+  payload: string;
+}
+export interface handleJorneyCalculation {
+  type: "HANDLE_JORNEY_CALCULATION";
+  payload: any;
+}
+
 export type Action =
   | DisplayAlert
   | ClearAlert
@@ -97,4 +106,6 @@ export type Action =
   | getJorneySuccess
   | createJorneyBegin
   | createJorneySuccess
-  | closeModal;
+  | closeModal
+  | handleSorting
+  | handleJorneyCalculation;

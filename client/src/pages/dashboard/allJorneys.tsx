@@ -3,7 +3,7 @@ import { JorneyContainer, SearchContainer } from "../../components";
 const allStations = () => {
   return (
     <div>
-      <SearchContainer page="jorney"/>
+      <SearchContainer sorting="on" page="jorney"/>
       <JorneyContainer/>
     </div>
   );

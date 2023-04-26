@@ -4,7 +4,7 @@ import { Action } from "../Action/Interface";
 import { initialState, initialStateProps } from "./initialState";
 
 const reducer = produce(
-  (state: initialStateProps = initialState, action: Action) => {
+  (state: initialStateProps = initialState, action: Action):initialStateProps => {
     switch (action.type) {
       case ActionType.DISPLAY_ALERT:
         return {
@@ -34,16 +34,6 @@ const reducer = produce(
           totalJorneys: action.payload.totalJorneys,
           numOfPages: action.payload.numOfPages,
         };
-      case ActionType.CREATE_JORNEY_BEGINE:
-        return { ...state, isLoading: true };
-      case ActionType.CREATE_JORNEY_SUCCESS:
-        return {
-          ...state,
-          isLoading: false,
-          showAlert: true,
-          alertType: "success",
-          alertText: "New Jorney Created!",
-        };
       case ActionType.GET_STATION_BEGIN:
         return {
           ...state,
@@ -68,11 +58,11 @@ const reducer = produce(
         return {
           ...state,
           search: "",
-          searchType: "all",
           sort: "latest",
         };
       case ActionType.CHANGE_PAGE:
         return { ...state, page: action.payload.page };
+
 
       case ActionType.CLEAR_VALUES:
         const stationState = {
@@ -89,8 +79,10 @@ const reducer = produce(
           ...state,
           ...stationState,
         };
+        
       case ActionType.CREATE_STATION_BEGIN:
         return { ...state, isLoading: true };
+
       case ActionType.CREATE_STATION_SUCCESS:
         return {
           ...state,
@@ -119,8 +111,6 @@ const reducer = produce(
         return {
           ...state,
           ModalToggle: !state.ModalToggle,
-          ModalX: "",
-          ModalY: "",
           ModalAdress: "",
         };
       case ActionType.TOGGLE_SIDEBAR:

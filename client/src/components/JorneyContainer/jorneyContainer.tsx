@@ -1,14 +1,9 @@
 import { useEffect } from "react";
 import { useTypedSelector } from "../../hooks/useTypeSelector";
-import {
-  LongestJorney,
-  Loading,
-  Alert,
-  Jorney,
-  PageBtnContainer,
-} from "../index";
+import { Loading, Alert, Jorney, PageBtnContainer } from "../index";
 import Wrapper from "./jorneyContainer_wrapper";
 import { useAction } from "../../hooks/useActions";
+import { Sorting } from "../../utils/HelperUtil";
 
 const JorneyContainer = () => {
   const {
@@ -18,16 +13,15 @@ const JorneyContainer = () => {
     search,
     numOfPages,
     showAlert,
-    totalJorneys,
     pageLimit,
-    sort
+    sort,
   } = useTypedSelector((state) => state.stations);
   const { getJorneys } = useAction();
 
   useEffect(() => {
-    getJorneys();
+    getJorneys(page, sort, search);
     // eslint-disable-next-line
-  }, [page, search]);
+  }, [page, search, sort]);
 
   if (isLoading) {
     return <Loading center />;
@@ -42,48 +36,41 @@ const JorneyContainer = () => {
   const indexOfLastJorney = page * pageLimit;
   const indexOfFirstJorney = indexOfLastJorney - pageLimit;
 
+  const value = "jorneys";
+
   let data = JSON.stringify(jorneys)
     .replaceAll(" ", "_")
     .replaceAll(" ", "_")
     .replaceAll("(", "")
     .replaceAll(")", "");
   let fixedData = JSON.parse(data);
-  let longesJorney = {
-    distants: 0,
-    from: "",
-    to: "",
-    time: {},
-  };
-  console.log(fixedData);
 
-
+  let count = 0;
   const Render = fixedData
-    .filter((find: any) =>
-      find.Departure_station_name.toLowerCase().includes(search.toLowerCase())
-    )
-    .sort(function(a: any, b: any){
-      if(sort === "Longes Distance") return b.Covered_distance_m - a.Covered_distance_m
-      if(sort === "Shortest Distance") return a.Covered_distance_m - b.Covered_distance_m
-
+    .filter((find: any) => {
+      if (
+        find.Departure_station_name.toLowerCase().includes(search.toLowerCase())
+      ) {
+        count++;
+        return find.Departure_station_name.toLowerCase().includes(
+          search.toLowerCase()
+        );
+      }
+      return null;
     })
+    .sort(Sorting({ value, sort }))
     .slice(indexOfFirstJorney, indexOfLastJorney)
     .map((jorney: any) => {
-      if (jorney.Covered_distance_m > longesJorney.distants) {
-        longesJorney.distants = jorney.Covered_distance_m;
-        longesJorney.from = jorney.Departure_station_name;
-        longesJorney.to = jorney.Return_station_name;
-        longesJorney.time = jorney.Duration_sec;
-      }
       return <Jorney key={jorney._id} {...jorney} />;
     });
   return (
     <Wrapper>
       {showAlert && <Alert />}
       <h5>
-        {totalJorneys} jorney{jorneys.length > 1 && "s"} found
+        {count} jorney{jorneys.length > 1 && "s"} found
       </h5>
       <div className="jorneys">{Render}</div>
-      {numOfPages > 1 && <PageBtnContainer value={totalJorneys} />}
+      {numOfPages > 1 && <PageBtnContainer value={count} />}
     </Wrapper>
   );
 };

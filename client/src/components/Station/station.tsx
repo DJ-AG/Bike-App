@@ -30,7 +30,7 @@ const Station: React.FC<StationProps> = ({
   Operaattor,
   Kapasiteet,
 }) => {
-  const { deleteStation, handleModal } = useAction();
+  const { deleteStation, handleOpenModal } = useAction();
   const { ModalToggle } = useTypedSelector((state) => state.stations);
 
   return (
@@ -59,7 +59,7 @@ const Station: React.FC<StationProps> = ({
             <button
               type="button"
               className="btn modal-btn"
-              onClick={() => handleModal(x, y, Osoite ? Osoite : Adress)}
+              onClick={() => handleOpenModal(x, y, Osoite ? Osoite : Adress)}
             >
               View Map
             </button>

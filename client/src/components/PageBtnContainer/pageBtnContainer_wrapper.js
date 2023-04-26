@@ -38,10 +38,14 @@ const Wrapper = styled.section`
     cursor: pointer;
     transition: var(--transition);
   }
+
   .prev-btn:hover,
   .next-btn:hover {
     background: var(--primary-500);
     color: var(--white);
+  }
+  .btn-disabled{
+    cursor: not-allowed;
   }
 `
 export default Wrapper

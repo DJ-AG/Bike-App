@@ -35,7 +35,7 @@ export interface initialStateProps {
   Duration: string
   jorneys:string[]
   totalJorneys:number,
-  sort: string,
+  sort: any,
   sortOptions: string[],
 
 
@@ -53,6 +53,8 @@ export const initialState: initialStateProps = {
   x: "",
   y: "",
   stations: [],
+  totalStations: 0,
+
   /*Modal Data */
 
   ModalToggle: false,
@@ -61,11 +63,6 @@ export const initialState: initialStateProps = {
   X: "",
   Y: "",
 
-  scriptLoaded: false,
-  search: "",
-  totalStations: 0,
-  numOfPages: 1,
-  page: 1,
 
   /*Global Settings */
   isLoading: false,
@@ -74,6 +71,10 @@ export const initialState: initialStateProps = {
   alertType: "",
   pageLimit: 10,
   showSidebar: false,
+  search: "",
+  numOfPages: 1,
+  page: 1,
+  scriptLoaded: false,
 
   /*Jorney Settings */
   jorneys:[],
@@ -86,7 +87,7 @@ export const initialState: initialStateProps = {
   Return_station_name: "",
   Covered_distance_m: "",
   Duration: "",
-  sort: 'Shortest Duration',
+  sort: '',
   sortOptions: ['Longes Distance', 'Shortest Distance', 'Longest Duration', 'Shortest Duration'],
 };
 

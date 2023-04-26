@@ -1,3 +1,5 @@
+/* Css file that i use in many projects */
+
 *,
 ::after,
 ::before {
@@ -128,9 +130,7 @@ a,
 button {
   line-height: 1.15;
 }
-button:disabled {
-  cursor: not-allowed;
-}
+
 ul {
   list-style-type: none;
   padding: 0;

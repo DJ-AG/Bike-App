@@ -1,6 +1,6 @@
 import Wrapper from "./Jorney_wrapper";
 import { JorneyInfo } from "../index";
-import TimeConverter from "../../utils/TimeImplementUtil";
+import { TimeConverter } from "../../utils/HelperUtil";
 
 interface JorneyProps {
   Departure: string;
@@ -19,7 +19,7 @@ const Station: React.FC<JorneyProps> = ({
   Covered_distance_m,
   Duration_sec,
 }) => {
-  let duration = TimeConverter(Duration_sec)
+  let duration = TimeConverter(Duration_sec);
   return (
     <Wrapper>
       <div className="content">

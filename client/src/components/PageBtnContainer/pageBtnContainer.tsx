@@ -7,7 +7,7 @@ interface PageBtnContainerProps {
   value: any;
 }
 
-const PageBtnContainer: React.FC<PageBtnContainerProps> = ({value}) => {
+const PageBtnContainer: React.FC<PageBtnContainerProps> = ({ value }) => {
   const { changePage } = useAction();
   const { numOfPages, page, pageLimit } = useTypedSelector(
     (state) => state.stations
@@ -30,9 +30,14 @@ const PageBtnContainer: React.FC<PageBtnContainerProps> = ({value}) => {
     }
     changePage(newPage);
   };
+
   return (
     <Wrapper>
-      <button className="prev-btn" onClick={prevPage}>
+      <button
+        className="prev-btn"
+        onClick={prevPage}
+        disabled={value === 10 || value < 10}
+      >
         <HiChevronDoubleLeft />
         prev
       </button>
@@ -41,7 +46,11 @@ const PageBtnContainer: React.FC<PageBtnContainerProps> = ({value}) => {
           {page} of {Math.ceil(value / 10)}
         </h2>
       </div>
-      <button className="next-btn" onClick={nextPage}>
+      <button
+        className="next-btn"
+        onClick={nextPage}
+        disabled={value === 10 || value < 10}
+      >
         next
         <HiChevronDoubleRight />
       </button>
