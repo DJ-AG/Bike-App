@@ -23,6 +23,32 @@ add your Google maps api key here<br>
 ![add googleapi](/media/googleApiKey.png)<br>
 Remmember to remove the Angle Bracket!
 
+## Front Page
+![front page](/media/main_page.jpg)
+
+## All Station Page
+![All Station page](/media/station_page.jpg)
+<br/>
+this page display's all the stations found in Database here you can search station by it's name, show the location on map or delete the whole station from Database.
+Page displays max of 10 stations per page and by clicking prev and next you can traverse the next or previous 10 stations.
+
+## Add Station Page
+![Add Station Page](/media/add_station.jpg)
+<br/>
+Here by filling the form and clicking submit you can create a station.
+
+## Jorneys Page
+![Jorneys Page](/media/jorneys_part1.jpg)
+<br/>
+![Jorneys Page](/media/jorneys_part2.jpg)
+<br/>
+On this page you can see all the jorneys mage by City Bike Finland. You can search by Departure Station or sort by Longes Distance, Shortest Distance, Longest Duration, Shortest Duration
+
+## App Mobile Navigation 
+![App Mobile Navigation](/media/mobile_nav_menu.jpg)
+<br/>
+look on the navigation on mobile devices
+
 ## Client (Frontend) && Server (Backend)
 The frontend is built with [React](https://reactjs.org/) + [Typescript](https://www.typescriptlang.org/) while the backend uses only Typescript that is compiled into JavaScirpt after the initail setup-production is runned. The project was design with mobile and desktop support in mind <br>
 

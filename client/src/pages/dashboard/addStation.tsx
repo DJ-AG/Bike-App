@@ -69,14 +69,14 @@ const AddStation = () => {
           <FormRow
             type="text"
             name="x"
-            labelText="x cordinaatti"
+            labelText="x coordinate"
             value={x}
             handleChange={handleStationInput}
           />
           <FormRow
             type="text"
             name="y"
-            labelText="y cordinaatti"
+            labelText="y coordinate"
             value={y}
             handleChange={handleStationInput}
           />
